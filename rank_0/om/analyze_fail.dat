@@ -1,0 +1,751 @@
+# 1.This file shows the parsed IR info when graph evaluating failed to help find the problem.
+# 2.You can search the last `------------------------>` to the node which is inferred failed.
+# 3.Refer to https://www.mindspore.cn/search?inputValue=analyze_fail.dat to get more instructions.
+# ===============================================================================
+
+# [No.1] Default_wrapper.1
+# In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/train/dataset_helper.py:105/    def construct(self):/
+funcgraph fg_1(
+        %para1 : Ref[Tensor(F32)][64, 3, 7, 7]    # backbone.conv1.weight
+        , %para2 : Ref[Tensor(F32)][64]    # backbone.bn1.gamma
+        , %para3 : Ref[Tensor(F32)][64]    # backbone.bn1.beta
+        , %para4 : Ref[Tensor(F32)][64, 64, 1, 1]    # backbone.layer1.0.conv1.weight
+        , %para5 : Ref[Tensor(F32)][64]    # backbone.layer1.0.bn1.gamma
+        , %para6 : Ref[Tensor(F32)][64]    # backbone.layer1.0.bn1.beta
+        , %para7 : Ref[Tensor(F32)][64, 64, 3, 3]    # backbone.layer1.0.conv2.weight
+        , %para8 : Ref[Tensor(F32)][64]    # backbone.layer1.0.bn2.gamma
+        , %para9 : Ref[Tensor(F32)][64]    # backbone.layer1.0.bn2.beta
+        , %para10 : Ref[Tensor(F32)][256, 64, 1, 1]    # backbone.layer1.0.conv3.weight
+        , %para11 : Ref[Tensor(F32)][256]    # backbone.layer1.0.bn3.gamma
+        , %para12 : Ref[Tensor(F32)][256]    # backbone.layer1.0.bn3.beta
+        , %para13 : Ref[Tensor(F32)][256, 64, 1, 1]    # backbone.layer1.0.down_sample_layer.0.weight
+        , %para14 : Ref[Tensor(F32)][256]    # backbone.layer1.0.down_sample_layer.1.gamma
+        , %para15 : Ref[Tensor(F32)][256]    # backbone.layer1.0.down_sample_layer.1.beta
+        , %para16 : Ref[Tensor(F32)][64, 256, 1, 1]    # backbone.layer1.1.conv1.weight
+        , %para17 : Ref[Tensor(F32)][64]    # backbone.layer1.1.bn1.gamma
+        , %para18 : Ref[Tensor(F32)][64]    # backbone.layer1.1.bn1.beta
+        , %para19 : Ref[Tensor(F32)][64, 64, 3, 3]    # backbone.layer1.1.conv2.weight
+        , %para20 : Ref[Tensor(F32)][64]    # backbone.layer1.1.bn2.gamma
+        , %para21 : Ref[Tensor(F32)][64]    # backbone.layer1.1.bn2.beta
+        , %para22 : Ref[Tensor(F32)][256, 64, 1, 1]    # backbone.layer1.1.conv3.weight
+        , %para23 : Ref[Tensor(F32)][256]    # backbone.layer1.1.bn3.gamma
+        , %para24 : Ref[Tensor(F32)][256]    # backbone.layer1.1.bn3.beta
+        , %para25 : Ref[Tensor(F32)][64, 256, 1, 1]    # backbone.layer1.2.conv1.weight
+        , %para26 : Ref[Tensor(F32)][64]    # backbone.layer1.2.bn1.gamma
+        , %para27 : Ref[Tensor(F32)][64]    # backbone.layer1.2.bn1.beta
+        , %para28 : Ref[Tensor(F32)][64, 64, 3, 3]    # backbone.layer1.2.conv2.weight
+        , %para29 : Ref[Tensor(F32)][64]    # backbone.layer1.2.bn2.gamma
+        , %para30 : Ref[Tensor(F32)][64]    # backbone.layer1.2.bn2.beta
+        , %para31 : Ref[Tensor(F32)][256, 64, 1, 1]    # backbone.layer1.2.conv3.weight
+        , %para32 : Ref[Tensor(F32)][256]    # backbone.layer1.2.bn3.gamma
+        , %para33 : Ref[Tensor(F32)][256]    # backbone.layer1.2.bn3.beta
+        , %para34 : Ref[Tensor(F32)][128, 256, 1, 1]    # backbone.layer2.0.conv1.weight
+        , %para35 : Ref[Tensor(F32)][128]    # backbone.layer2.0.bn1.gamma
+        , %para36 : Ref[Tensor(F32)][128]    # backbone.layer2.0.bn1.beta
+        , %para37 : Ref[Tensor(F32)][128, 128, 3, 3]    # backbone.layer2.0.conv2.weight
+        , %para38 : Ref[Tensor(F32)][128]    # backbone.layer2.0.bn2.gamma
+        , %para39 : Ref[Tensor(F32)][128]    # backbone.layer2.0.bn2.beta
+        , %para40 : Ref[Tensor(F32)][512, 128, 1, 1]    # backbone.layer2.0.conv3.weight
+        , %para41 : Ref[Tensor(F32)][512]    # backbone.layer2.0.bn3.gamma
+        , %para42 : Ref[Tensor(F32)][512]    # backbone.layer2.0.bn3.beta
+        , %para43 : Ref[Tensor(F32)][512, 256, 1, 1]    # backbone.layer2.0.down_sample_layer.0.weight
+        , %para44 : Ref[Tensor(F32)][512]    # backbone.layer2.0.down_sample_layer.1.gamma
+        , %para45 : Ref[Tensor(F32)][512]    # backbone.layer2.0.down_sample_layer.1.beta
+        , %para46 : Ref[Tensor(F32)][128, 512, 1, 1]    # backbone.layer2.1.conv1.weight
+        , %para47 : Ref[Tensor(F32)][128]    # backbone.layer2.1.bn1.gamma
+        , %para48 : Ref[Tensor(F32)][128]    # backbone.layer2.1.bn1.beta
+        , %para49 : Ref[Tensor(F32)][128, 128, 3, 3]    # backbone.layer2.1.conv2.weight
+        , %para50 : Ref[Tensor(F32)][128]    # backbone.layer2.1.bn2.gamma
+        , %para51 : Ref[Tensor(F32)][128]    # backbone.layer2.1.bn2.beta
+        , %para52 : Ref[Tensor(F32)][512, 128, 1, 1]    # backbone.layer2.1.conv3.weight
+        , %para53 : Ref[Tensor(F32)][512]    # backbone.layer2.1.bn3.gamma
+        , %para54 : Ref[Tensor(F32)][512]    # backbone.layer2.1.bn3.beta
+        , %para55 : Ref[Tensor(F32)][128, 512, 1, 1]    # backbone.layer2.2.conv1.weight
+        , %para56 : Ref[Tensor(F32)][128]    # backbone.layer2.2.bn1.gamma
+        , %para57 : Ref[Tensor(F32)][128]    # backbone.layer2.2.bn1.beta
+        , %para58 : Ref[Tensor(F32)][128, 128, 3, 3]    # backbone.layer2.2.conv2.weight
+        , %para59 : Ref[Tensor(F32)][128]    # backbone.layer2.2.bn2.gamma
+        , %para60 : Ref[Tensor(F32)][128]    # backbone.layer2.2.bn2.beta
+        , %para61 : Ref[Tensor(F32)][512, 128, 1, 1]    # backbone.layer2.2.conv3.weight
+        , %para62 : Ref[Tensor(F32)][512]    # backbone.layer2.2.bn3.gamma
+        , %para63 : Ref[Tensor(F32)][512]    # backbone.layer2.2.bn3.beta
+        , %para64 : Ref[Tensor(F32)][128, 512, 1, 1]    # backbone.layer2.3.conv1.weight
+        , %para65 : Ref[Tensor(F32)][128]    # backbone.layer2.3.bn1.gamma
+        , %para66 : Ref[Tensor(F32)][128]    # backbone.layer2.3.bn1.beta
+        , %para67 : Ref[Tensor(F32)][128, 128, 3, 3]    # backbone.layer2.3.conv2.weight
+        , %para68 : Ref[Tensor(F32)][128]    # backbone.layer2.3.bn2.gamma
+        , %para69 : Ref[Tensor(F32)][128]    # backbone.layer2.3.bn2.beta
+        , %para70 : Ref[Tensor(F32)][512, 128, 1, 1]    # backbone.layer2.3.conv3.weight
+        , %para71 : Ref[Tensor(F32)][512]    # backbone.layer2.3.bn3.gamma
+        , %para72 : Ref[Tensor(F32)][512]    # backbone.layer2.3.bn3.beta
+        , %para73 : Ref[Tensor(F32)][256, 512, 1, 1]    # backbone.layer3.0.conv1.weight
+        , %para74 : Ref[Tensor(F32)][256]    # backbone.layer3.0.bn1.gamma
+        , %para75 : Ref[Tensor(F32)][256]    # backbone.layer3.0.bn1.beta
+        , %para76 : Ref[Tensor(F32)][256, 256, 3, 3]    # backbone.layer3.0.conv2.weight
+        , %para77 : Ref[Tensor(F32)][256]    # backbone.layer3.0.bn2.gamma
+        , %para78 : Ref[Tensor(F32)][256]    # backbone.layer3.0.bn2.beta
+        , %para79 : Ref[Tensor(F32)][1024, 256, 1, 1]    # backbone.layer3.0.conv3.weight
+        , %para80 : Ref[Tensor(F32)][1024]    # backbone.layer3.0.bn3.gamma
+        , %para81 : Ref[Tensor(F32)][1024]    # backbone.layer3.0.bn3.beta
+        , %para82 : Ref[Tensor(F32)][1024, 512, 1, 1]    # backbone.layer3.0.down_sample_layer.0.weight
+        , %para83 : Ref[Tensor(F32)][1024]    # backbone.layer3.0.down_sample_layer.1.gamma
+        , %para84 : Ref[Tensor(F32)][1024]    # backbone.layer3.0.down_sample_layer.1.beta
+        , %para85 : Ref[Tensor(F32)][256, 1024, 1, 1]    # backbone.layer3.1.conv1.weight
+        , %para86 : Ref[Tensor(F32)][256]    # backbone.layer3.1.bn1.gamma
+        , %para87 : Ref[Tensor(F32)][256]    # backbone.layer3.1.bn1.beta
+        , %para88 : Ref[Tensor(F32)][256, 256, 3, 3]    # backbone.layer3.1.conv2.weight
+        , %para89 : Ref[Tensor(F32)][256]    # backbone.layer3.1.bn2.gamma
+        , %para90 : Ref[Tensor(F32)][256]    # backbone.layer3.1.bn2.beta
+        , %para91 : Ref[Tensor(F32)][1024, 256, 1, 1]    # backbone.layer3.1.conv3.weight
+        , %para92 : Ref[Tensor(F32)][1024]    # backbone.layer3.1.bn3.gamma
+        , %para93 : Ref[Tensor(F32)][1024]    # backbone.layer3.1.bn3.beta
+        , %para94 : Ref[Tensor(F32)][256, 1024, 1, 1]    # backbone.layer3.2.conv1.weight
+        , %para95 : Ref[Tensor(F32)][256]    # backbone.layer3.2.bn1.gamma
+        , %para96 : Ref[Tensor(F32)][256]    # backbone.layer3.2.bn1.beta
+        , %para97 : Ref[Tensor(F32)][256, 256, 3, 3]    # backbone.layer3.2.conv2.weight
+        , %para98 : Ref[Tensor(F32)][256]    # backbone.layer3.2.bn2.gamma
+        , %para99 : Ref[Tensor(F32)][256]    # backbone.layer3.2.bn2.beta
+        , %para100 : Ref[Tensor(F32)][1024, 256, 1, 1]    # backbone.layer3.2.conv3.weight
+        , %para101 : Ref[Tensor(F32)][1024]    # backbone.layer3.2.bn3.gamma
+        , %para102 : Ref[Tensor(F32)][1024]    # backbone.layer3.2.bn3.beta
+        , %para103 : Ref[Tensor(F32)][256, 1024, 1, 1]    # backbone.layer3.3.conv1.weight
+        , %para104 : Ref[Tensor(F32)][256]    # backbone.layer3.3.bn1.gamma
+        , %para105 : Ref[Tensor(F32)][256]    # backbone.layer3.3.bn1.beta
+        , %para106 : Ref[Tensor(F32)][256, 256, 3, 3]    # backbone.layer3.3.conv2.weight
+        , %para107 : Ref[Tensor(F32)][256]    # backbone.layer3.3.bn2.gamma
+        , %para108 : Ref[Tensor(F32)][256]    # backbone.layer3.3.bn2.beta
+        , %para109 : Ref[Tensor(F32)][1024, 256, 1, 1]    # backbone.layer3.3.conv3.weight
+        , %para110 : Ref[Tensor(F32)][1024]    # backbone.layer3.3.bn3.gamma
+        , %para111 : Ref[Tensor(F32)][1024]    # backbone.layer3.3.bn3.beta
+        , %para112 : Ref[Tensor(F32)][256, 1024, 1, 1]    # backbone.layer3.4.conv1.weight
+        , %para113 : Ref[Tensor(F32)][256]    # backbone.layer3.4.bn1.gamma
+        , %para114 : Ref[Tensor(F32)][256]    # backbone.layer3.4.bn1.beta
+        , %para115 : Ref[Tensor(F32)][256, 256, 3, 3]    # backbone.layer3.4.conv2.weight
+        , %para116 : Ref[Tensor(F32)][256]    # backbone.layer3.4.bn2.gamma
+        , %para117 : Ref[Tensor(F32)][256]    # backbone.layer3.4.bn2.beta
+        , %para118 : Ref[Tensor(F32)][1024, 256, 1, 1]    # backbone.layer3.4.conv3.weight
+        , %para119 : Ref[Tensor(F32)][1024]    # backbone.layer3.4.bn3.gamma
+        , %para120 : Ref[Tensor(F32)][1024]    # backbone.layer3.4.bn3.beta
+        , %para121 : Ref[Tensor(F32)][256, 1024, 1, 1]    # backbone.layer3.5.conv1.weight
+        , %para122 : Ref[Tensor(F32)][256]    # backbone.layer3.5.bn1.gamma
+        , %para123 : Ref[Tensor(F32)][256]    # backbone.layer3.5.bn1.beta
+        , %para124 : Ref[Tensor(F32)][256, 256, 3, 3]    # backbone.layer3.5.conv2.weight
+        , %para125 : Ref[Tensor(F32)][256]    # backbone.layer3.5.bn2.gamma
+        , %para126 : Ref[Tensor(F32)][256]    # backbone.layer3.5.bn2.beta
+        , %para127 : Ref[Tensor(F32)][1024, 256, 1, 1]    # backbone.layer3.5.conv3.weight
+        , %para128 : Ref[Tensor(F32)][1024]    # backbone.layer3.5.bn3.gamma
+        , %para129 : Ref[Tensor(F32)][1024]    # backbone.layer3.5.bn3.beta
+        , %para130 : Ref[Tensor(F32)][512, 1024, 1, 1]    # backbone.layer4.0.conv1.weight
+        , %para131 : Ref[Tensor(F32)][512]    # backbone.layer4.0.bn1.gamma
+        , %para132 : Ref[Tensor(F32)][512]    # backbone.layer4.0.bn1.beta
+        , %para133 : Ref[Tensor(F32)][512, 512, 3, 3]    # backbone.layer4.0.conv2.weight
+        , %para134 : Ref[Tensor(F32)][512]    # backbone.layer4.0.bn2.gamma
+        , %para135 : Ref[Tensor(F32)][512]    # backbone.layer4.0.bn2.beta
+        , %para136 : Ref[Tensor(F32)][2048, 512, 1, 1]    # backbone.layer4.0.conv3.weight
+        , %para137 : Ref[Tensor(F32)][2048]    # backbone.layer4.0.bn3.gamma
+        , %para138 : Ref[Tensor(F32)][2048]    # backbone.layer4.0.bn3.beta
+        , %para139 : Ref[Tensor(F32)][2048, 1024, 1, 1]    # backbone.layer4.0.down_sample_layer.0.weight
+        , %para140 : Ref[Tensor(F32)][2048]    # backbone.layer4.0.down_sample_layer.1.gamma
+        , %para141 : Ref[Tensor(F32)][2048]    # backbone.layer4.0.down_sample_layer.1.beta
+        , %para142 : Ref[Tensor(F32)][512, 2048, 1, 1]    # backbone.layer4.1.conv1.weight
+        , %para143 : Ref[Tensor(F32)][512]    # backbone.layer4.1.bn1.gamma
+        , %para144 : Ref[Tensor(F32)][512]    # backbone.layer4.1.bn1.beta
+        , %para145 : Ref[Tensor(F32)][512, 512, 3, 3]    # backbone.layer4.1.conv2.weight
+        , %para146 : Ref[Tensor(F32)][512]    # backbone.layer4.1.bn2.gamma
+        , %para147 : Ref[Tensor(F32)][512]    # backbone.layer4.1.bn2.beta
+        , %para148 : Ref[Tensor(F32)][2048, 512, 1, 1]    # backbone.layer4.1.conv3.weight
+        , %para149 : Ref[Tensor(F32)][2048]    # backbone.layer4.1.bn3.gamma
+        , %para150 : Ref[Tensor(F32)][2048]    # backbone.layer4.1.bn3.beta
+        , %para151 : Ref[Tensor(F32)][512, 2048, 1, 1]    # backbone.layer4.2.conv1.weight
+        , %para152 : Ref[Tensor(F32)][512]    # backbone.layer4.2.bn1.gamma
+        , %para153 : Ref[Tensor(F32)][512]    # backbone.layer4.2.bn1.beta
+        , %para154 : Ref[Tensor(F32)][512, 512, 3, 3]    # backbone.layer4.2.conv2.weight
+        , %para155 : Ref[Tensor(F32)][512]    # backbone.layer4.2.bn2.gamma
+        , %para156 : Ref[Tensor(F32)][512]    # backbone.layer4.2.bn2.beta
+        , %para157 : Ref[Tensor(F32)][2048, 512, 1, 1]    # backbone.layer4.2.conv3.weight
+        , %para158 : Ref[Tensor(F32)][2048]    # backbone.layer4.2.bn3.gamma
+        , %para159 : Ref[Tensor(F32)][2048]    # backbone.layer4.2.bn3.beta
+        , %para160 : Ref[Tensor(F32)][13938, 2048]    # backbone.end_point.weight
+        , %para161 : Ref[Tensor(F32)][13938]    # backbone.end_point.bias
+        , %para162 : Ref[Tensor(F32)][64, 3, 7, 7]    # accum.backbone.conv1.weight
+        , %para163 : Ref[Tensor(F32)][64]    # accum.backbone.bn1.gamma
+        , %para164 : Ref[Tensor(F32)][64]    # accum.backbone.bn1.beta
+        , %para165 : Ref[Tensor(F32)][64, 64, 1, 1]    # accum.backbone.layer1.0.conv1.weight
+        , %para166 : Ref[Tensor(F32)][64]    # accum.backbone.layer1.0.bn1.gamma
+        , %para167 : Ref[Tensor(F32)][64]    # accum.backbone.layer1.0.bn1.beta
+        , %para168 : Ref[Tensor(F32)][64, 64, 3, 3]    # accum.backbone.layer1.0.conv2.weight
+        , %para169 : Ref[Tensor(F32)][64]    # accum.backbone.layer1.0.bn2.gamma
+        , %para170 : Ref[Tensor(F32)][64]    # accum.backbone.layer1.0.bn2.beta
+        , %para171 : Ref[Tensor(F32)][256, 64, 1, 1]    # accum.backbone.layer1.0.conv3.weight
+        , %para172 : Ref[Tensor(F32)][256]    # accum.backbone.layer1.0.bn3.gamma
+        , %para173 : Ref[Tensor(F32)][256]    # accum.backbone.layer1.0.bn3.beta
+        , %para174 : Ref[Tensor(F32)][256, 64, 1, 1]    # accum.backbone.layer1.0.down_sample_layer.0.weight
+        , %para175 : Ref[Tensor(F32)][256]    # accum.backbone.layer1.0.down_sample_layer.1.gamma
+        , %para176 : Ref[Tensor(F32)][256]    # accum.backbone.layer1.0.down_sample_layer.1.beta
+        , %para177 : Ref[Tensor(F32)][64, 256, 1, 1]    # accum.backbone.layer1.1.conv1.weight
+        , %para178 : Ref[Tensor(F32)][64]    # accum.backbone.layer1.1.bn1.gamma
+        , %para179 : Ref[Tensor(F32)][64]    # accum.backbone.layer1.1.bn1.beta
+        , %para180 : Ref[Tensor(F32)][64, 64, 3, 3]    # accum.backbone.layer1.1.conv2.weight
+        , %para181 : Ref[Tensor(F32)][64]    # accum.backbone.layer1.1.bn2.gamma
+        , %para182 : Ref[Tensor(F32)][64]    # accum.backbone.layer1.1.bn2.beta
+        , %para183 : Ref[Tensor(F32)][256, 64, 1, 1]    # accum.backbone.layer1.1.conv3.weight
+        , %para184 : Ref[Tensor(F32)][256]    # accum.backbone.layer1.1.bn3.gamma
+        , %para185 : Ref[Tensor(F32)][256]    # accum.backbone.layer1.1.bn3.beta
+        , %para186 : Ref[Tensor(F32)][64, 256, 1, 1]    # accum.backbone.layer1.2.conv1.weight
+        , %para187 : Ref[Tensor(F32)][64]    # accum.backbone.layer1.2.bn1.gamma
+        , %para188 : Ref[Tensor(F32)][64]    # accum.backbone.layer1.2.bn1.beta
+        , %para189 : Ref[Tensor(F32)][64, 64, 3, 3]    # accum.backbone.layer1.2.conv2.weight
+        , %para190 : Ref[Tensor(F32)][64]    # accum.backbone.layer1.2.bn2.gamma
+        , %para191 : Ref[Tensor(F32)][64]    # accum.backbone.layer1.2.bn2.beta
+        , %para192 : Ref[Tensor(F32)][256, 64, 1, 1]    # accum.backbone.layer1.2.conv3.weight
+        , %para193 : Ref[Tensor(F32)][256]    # accum.backbone.layer1.2.bn3.gamma
+        , %para194 : Ref[Tensor(F32)][256]    # accum.backbone.layer1.2.bn3.beta
+        , %para195 : Ref[Tensor(F32)][128, 256, 1, 1]    # accum.backbone.layer2.0.conv1.weight
+        , %para196 : Ref[Tensor(F32)][128]    # accum.backbone.layer2.0.bn1.gamma
+        , %para197 : Ref[Tensor(F32)][128]    # accum.backbone.layer2.0.bn1.beta
+        , %para198 : Ref[Tensor(F32)][128, 128, 3, 3]    # accum.backbone.layer2.0.conv2.weight
+        , %para199 : Ref[Tensor(F32)][128]    # accum.backbone.layer2.0.bn2.gamma
+        , %para200 : Ref[Tensor(F32)][128]    # accum.backbone.layer2.0.bn2.beta
+        , %para201 : Ref[Tensor(F32)][512, 128, 1, 1]    # accum.backbone.layer2.0.conv3.weight
+        , %para202 : Ref[Tensor(F32)][512]    # accum.backbone.layer2.0.bn3.gamma
+        , %para203 : Ref[Tensor(F32)][512]    # accum.backbone.layer2.0.bn3.beta
+        , %para204 : Ref[Tensor(F32)][512, 256, 1, 1]    # accum.backbone.layer2.0.down_sample_layer.0.weight
+        , %para205 : Ref[Tensor(F32)][512]    # accum.backbone.layer2.0.down_sample_layer.1.gamma
+        , %para206 : Ref[Tensor(F32)][512]    # accum.backbone.layer2.0.down_sample_layer.1.beta
+        , %para207 : Ref[Tensor(F32)][128, 512, 1, 1]    # accum.backbone.layer2.1.conv1.weight
+        , %para208 : Ref[Tensor(F32)][128]    # accum.backbone.layer2.1.bn1.gamma
+        , %para209 : Ref[Tensor(F32)][128]    # accum.backbone.layer2.1.bn1.beta
+        , %para210 : Ref[Tensor(F32)][128, 128, 3, 3]    # accum.backbone.layer2.1.conv2.weight
+        , %para211 : Ref[Tensor(F32)][128]    # accum.backbone.layer2.1.bn2.gamma
+        , %para212 : Ref[Tensor(F32)][128]    # accum.backbone.layer2.1.bn2.beta
+        , %para213 : Ref[Tensor(F32)][512, 128, 1, 1]    # accum.backbone.layer2.1.conv3.weight
+        , %para214 : Ref[Tensor(F32)][512]    # accum.backbone.layer2.1.bn3.gamma
+        , %para215 : Ref[Tensor(F32)][512]    # accum.backbone.layer2.1.bn3.beta
+        , %para216 : Ref[Tensor(F32)][128, 512, 1, 1]    # accum.backbone.layer2.2.conv1.weight
+        , %para217 : Ref[Tensor(F32)][128]    # accum.backbone.layer2.2.bn1.gamma
+        , %para218 : Ref[Tensor(F32)][128]    # accum.backbone.layer2.2.bn1.beta
+        , %para219 : Ref[Tensor(F32)][128, 128, 3, 3]    # accum.backbone.layer2.2.conv2.weight
+        , %para220 : Ref[Tensor(F32)][128]    # accum.backbone.layer2.2.bn2.gamma
+        , %para221 : Ref[Tensor(F32)][128]    # accum.backbone.layer2.2.bn2.beta
+        , %para222 : Ref[Tensor(F32)][512, 128, 1, 1]    # accum.backbone.layer2.2.conv3.weight
+        , %para223 : Ref[Tensor(F32)][512]    # accum.backbone.layer2.2.bn3.gamma
+        , %para224 : Ref[Tensor(F32)][512]    # accum.backbone.layer2.2.bn3.beta
+        , %para225 : Ref[Tensor(F32)][128, 512, 1, 1]    # accum.backbone.layer2.3.conv1.weight
+        , %para226 : Ref[Tensor(F32)][128]    # accum.backbone.layer2.3.bn1.gamma
+        , %para227 : Ref[Tensor(F32)][128]    # accum.backbone.layer2.3.bn1.beta
+        , %para228 : Ref[Tensor(F32)][128, 128, 3, 3]    # accum.backbone.layer2.3.conv2.weight
+        , %para229 : Ref[Tensor(F32)][128]    # accum.backbone.layer2.3.bn2.gamma
+        , %para230 : Ref[Tensor(F32)][128]    # accum.backbone.layer2.3.bn2.beta
+        , %para231 : Ref[Tensor(F32)][512, 128, 1, 1]    # accum.backbone.layer2.3.conv3.weight
+        , %para232 : Ref[Tensor(F32)][512]    # accum.backbone.layer2.3.bn3.gamma
+        , %para233 : Ref[Tensor(F32)][512]    # accum.backbone.layer2.3.bn3.beta
+        , %para234 : Ref[Tensor(F32)][256, 512, 1, 1]    # accum.backbone.layer3.0.conv1.weight
+        , %para235 : Ref[Tensor(F32)][256]    # accum.backbone.layer3.0.bn1.gamma
+        , %para236 : Ref[Tensor(F32)][256]    # accum.backbone.layer3.0.bn1.beta
+        , %para237 : Ref[Tensor(F32)][256, 256, 3, 3]    # accum.backbone.layer3.0.conv2.weight
+        , %para238 : Ref[Tensor(F32)][256]    # accum.backbone.layer3.0.bn2.gamma
+        , %para239 : Ref[Tensor(F32)][256]    # accum.backbone.layer3.0.bn2.beta
+        , %para240 : Ref[Tensor(F32)][1024, 256, 1, 1]    # accum.backbone.layer3.0.conv3.weight
+        , %para241 : Ref[Tensor(F32)][1024]    # accum.backbone.layer3.0.bn3.gamma
+        , %para242 : Ref[Tensor(F32)][1024]    # accum.backbone.layer3.0.bn3.beta
+        , %para243 : Ref[Tensor(F32)][1024, 512, 1, 1]    # accum.backbone.layer3.0.down_sample_layer.0.weight
+        , %para244 : Ref[Tensor(F32)][1024]    # accum.backbone.layer3.0.down_sample_layer.1.gamma
+        , %para245 : Ref[Tensor(F32)][1024]    # accum.backbone.layer3.0.down_sample_layer.1.beta
+        , %para246 : Ref[Tensor(F32)][256, 1024, 1, 1]    # accum.backbone.layer3.1.conv1.weight
+        , %para247 : Ref[Tensor(F32)][256]    # accum.backbone.layer3.1.bn1.gamma
+        , %para248 : Ref[Tensor(F32)][256]    # accum.backbone.layer3.1.bn1.beta
+        , %para249 : Ref[Tensor(F32)][256, 256, 3, 3]    # accum.backbone.layer3.1.conv2.weight
+        , %para250 : Ref[Tensor(F32)][256]    # accum.backbone.layer3.1.bn2.gamma
+        , %para251 : Ref[Tensor(F32)][256]    # accum.backbone.layer3.1.bn2.beta
+        , %para252 : Ref[Tensor(F32)][1024, 256, 1, 1]    # accum.backbone.layer3.1.conv3.weight
+        , %para253 : Ref[Tensor(F32)][1024]    # accum.backbone.layer3.1.bn3.gamma
+        , %para254 : Ref[Tensor(F32)][1024]    # accum.backbone.layer3.1.bn3.beta
+        , %para255 : Ref[Tensor(F32)][256, 1024, 1, 1]    # accum.backbone.layer3.2.conv1.weight
+        , %para256 : Ref[Tensor(F32)][256]    # accum.backbone.layer3.2.bn1.gamma
+        , %para257 : Ref[Tensor(F32)][256]    # accum.backbone.layer3.2.bn1.beta
+        , %para258 : Ref[Tensor(F32)][256, 256, 3, 3]    # accum.backbone.layer3.2.conv2.weight
+        , %para259 : Ref[Tensor(F32)][256]    # accum.backbone.layer3.2.bn2.gamma
+        , %para260 : Ref[Tensor(F32)][256]    # accum.backbone.layer3.2.bn2.beta
+        , %para261 : Ref[Tensor(F32)][1024, 256, 1, 1]    # accum.backbone.layer3.2.conv3.weight
+        , %para262 : Ref[Tensor(F32)][1024]    # accum.backbone.layer3.2.bn3.gamma
+        , %para263 : Ref[Tensor(F32)][1024]    # accum.backbone.layer3.2.bn3.beta
+        , %para264 : Ref[Tensor(F32)][256, 1024, 1, 1]    # accum.backbone.layer3.3.conv1.weight
+        , %para265 : Ref[Tensor(F32)][256]    # accum.backbone.layer3.3.bn1.gamma
+        , %para266 : Ref[Tensor(F32)][256]    # accum.backbone.layer3.3.bn1.beta
+        , %para267 : Ref[Tensor(F32)][256, 256, 3, 3]    # accum.backbone.layer3.3.conv2.weight
+        , %para268 : Ref[Tensor(F32)][256]    # accum.backbone.layer3.3.bn2.gamma
+        , %para269 : Ref[Tensor(F32)][256]    # accum.backbone.layer3.3.bn2.beta
+        , %para270 : Ref[Tensor(F32)][1024, 256, 1, 1]    # accum.backbone.layer3.3.conv3.weight
+        , %para271 : Ref[Tensor(F32)][1024]    # accum.backbone.layer3.3.bn3.gamma
+        , %para272 : Ref[Tensor(F32)][1024]    # accum.backbone.layer3.3.bn3.beta
+        , %para273 : Ref[Tensor(F32)][256, 1024, 1, 1]    # accum.backbone.layer3.4.conv1.weight
+        , %para274 : Ref[Tensor(F32)][256]    # accum.backbone.layer3.4.bn1.gamma
+        , %para275 : Ref[Tensor(F32)][256]    # accum.backbone.layer3.4.bn1.beta
+        , %para276 : Ref[Tensor(F32)][256, 256, 3, 3]    # accum.backbone.layer3.4.conv2.weight
+        , %para277 : Ref[Tensor(F32)][256]    # accum.backbone.layer3.4.bn2.gamma
+        , %para278 : Ref[Tensor(F32)][256]    # accum.backbone.layer3.4.bn2.beta
+        , %para279 : Ref[Tensor(F32)][1024, 256, 1, 1]    # accum.backbone.layer3.4.conv3.weight
+        , %para280 : Ref[Tensor(F32)][1024]    # accum.backbone.layer3.4.bn3.gamma
+        , %para281 : Ref[Tensor(F32)][1024]    # accum.backbone.layer3.4.bn3.beta
+        , %para282 : Ref[Tensor(F32)][256, 1024, 1, 1]    # accum.backbone.layer3.5.conv1.weight
+        , %para283 : Ref[Tensor(F32)][256]    # accum.backbone.layer3.5.bn1.gamma
+        , %para284 : Ref[Tensor(F32)][256]    # accum.backbone.layer3.5.bn1.beta
+        , %para285 : Ref[Tensor(F32)][256, 256, 3, 3]    # accum.backbone.layer3.5.conv2.weight
+        , %para286 : Ref[Tensor(F32)][256]    # accum.backbone.layer3.5.bn2.gamma
+        , %para287 : Ref[Tensor(F32)][256]    # accum.backbone.layer3.5.bn2.beta
+        , %para288 : Ref[Tensor(F32)][1024, 256, 1, 1]    # accum.backbone.layer3.5.conv3.weight
+        , %para289 : Ref[Tensor(F32)][1024]    # accum.backbone.layer3.5.bn3.gamma
+        , %para290 : Ref[Tensor(F32)][1024]    # accum.backbone.layer3.5.bn3.beta
+        , %para291 : Ref[Tensor(F32)][512, 1024, 1, 1]    # accum.backbone.layer4.0.conv1.weight
+        , %para292 : Ref[Tensor(F32)][512]    # accum.backbone.layer4.0.bn1.gamma
+        , %para293 : Ref[Tensor(F32)][512]    # accum.backbone.layer4.0.bn1.beta
+        , %para294 : Ref[Tensor(F32)][512, 512, 3, 3]    # accum.backbone.layer4.0.conv2.weight
+        , %para295 : Ref[Tensor(F32)][512]    # accum.backbone.layer4.0.bn2.gamma
+        , %para296 : Ref[Tensor(F32)][512]    # accum.backbone.layer4.0.bn2.beta
+        , %para297 : Ref[Tensor(F32)][2048, 512, 1, 1]    # accum.backbone.layer4.0.conv3.weight
+        , %para298 : Ref[Tensor(F32)][2048]    # accum.backbone.layer4.0.bn3.gamma
+        , %para299 : Ref[Tensor(F32)][2048]    # accum.backbone.layer4.0.bn3.beta
+        , %para300 : Ref[Tensor(F32)][2048, 1024, 1, 1]    # accum.backbone.layer4.0.down_sample_layer.0.weight
+        , %para301 : Ref[Tensor(F32)][2048]    # accum.backbone.layer4.0.down_sample_layer.1.gamma
+        , %para302 : Ref[Tensor(F32)][2048]    # accum.backbone.layer4.0.down_sample_layer.1.beta
+        , %para303 : Ref[Tensor(F32)][512, 2048, 1, 1]    # accum.backbone.layer4.1.conv1.weight
+        , %para304 : Ref[Tensor(F32)][512]    # accum.backbone.layer4.1.bn1.gamma
+        , %para305 : Ref[Tensor(F32)][512]    # accum.backbone.layer4.1.bn1.beta
+        , %para306 : Ref[Tensor(F32)][512, 512, 3, 3]    # accum.backbone.layer4.1.conv2.weight
+        , %para307 : Ref[Tensor(F32)][512]    # accum.backbone.layer4.1.bn2.gamma
+        , %para308 : Ref[Tensor(F32)][512]    # accum.backbone.layer4.1.bn2.beta
+        , %para309 : Ref[Tensor(F32)][2048, 512, 1, 1]    # accum.backbone.layer4.1.conv3.weight
+        , %para310 : Ref[Tensor(F32)][2048]    # accum.backbone.layer4.1.bn3.gamma
+        , %para311 : Ref[Tensor(F32)][2048]    # accum.backbone.layer4.1.bn3.beta
+        , %para312 : Ref[Tensor(F32)][512, 2048, 1, 1]    # accum.backbone.layer4.2.conv1.weight
+        , %para313 : Ref[Tensor(F32)][512]    # accum.backbone.layer4.2.bn1.gamma
+        , %para314 : Ref[Tensor(F32)][512]    # accum.backbone.layer4.2.bn1.beta
+        , %para315 : Ref[Tensor(F32)][512, 512, 3, 3]    # accum.backbone.layer4.2.conv2.weight
+        , %para316 : Ref[Tensor(F32)][512]    # accum.backbone.layer4.2.bn2.gamma
+        , %para317 : Ref[Tensor(F32)][512]    # accum.backbone.layer4.2.bn2.beta
+        , %para318 : Ref[Tensor(F32)][2048, 512, 1, 1]    # accum.backbone.layer4.2.conv3.weight
+        , %para319 : Ref[Tensor(F32)][2048]    # accum.backbone.layer4.2.bn3.gamma
+        , %para320 : Ref[Tensor(F32)][2048]    # accum.backbone.layer4.2.bn3.beta
+        , %para321 : Ref[Tensor(F32)][13938, 2048]    # accum.backbone.end_point.weight
+        , %para322 : Ref[Tensor(F32)][13938]    # accum.backbone.end_point.bias
+        , %para323 : Ref[Tensor(F32)][64, 3, 7, 7]    # stat.backbone.conv1.weight
+        , %para324 : Ref[Tensor(F32)][64]    # stat.backbone.bn1.gamma
+        , %para325 : Ref[Tensor(F32)][64]    # stat.backbone.bn1.beta
+        , %para326 : Ref[Tensor(F32)][64, 64, 1, 1]    # stat.backbone.layer1.0.conv1.weight
+        , %para327 : Ref[Tensor(F32)][64]    # stat.backbone.layer1.0.bn1.gamma
+        , %para328 : Ref[Tensor(F32)][64]    # stat.backbone.layer1.0.bn1.beta
+        , %para329 : Ref[Tensor(F32)][64, 64, 3, 3]    # stat.backbone.layer1.0.conv2.weight
+        , %para330 : Ref[Tensor(F32)][64]    # stat.backbone.layer1.0.bn2.gamma
+        , %para331 : Ref[Tensor(F32)][64]    # stat.backbone.layer1.0.bn2.beta
+        , %para332 : Ref[Tensor(F32)][256, 64, 1, 1]    # stat.backbone.layer1.0.conv3.weight
+        , %para333 : Ref[Tensor(F32)][256]    # stat.backbone.layer1.0.bn3.gamma
+        , %para334 : Ref[Tensor(F32)][256]    # stat.backbone.layer1.0.bn3.beta
+        , %para335 : Ref[Tensor(F32)][256, 64, 1, 1]    # stat.backbone.layer1.0.down_sample_layer.0.weight
+        , %para336 : Ref[Tensor(F32)][256]    # stat.backbone.layer1.0.down_sample_layer.1.gamma
+        , %para337 : Ref[Tensor(F32)][256]    # stat.backbone.layer1.0.down_sample_layer.1.beta
+        , %para338 : Ref[Tensor(F32)][64, 256, 1, 1]    # stat.backbone.layer1.1.conv1.weight
+        , %para339 : Ref[Tensor(F32)][64]    # stat.backbone.layer1.1.bn1.gamma
+        , %para340 : Ref[Tensor(F32)][64]    # stat.backbone.layer1.1.bn1.beta
+        , %para341 : Ref[Tensor(F32)][64, 64, 3, 3]    # stat.backbone.layer1.1.conv2.weight
+        , %para342 : Ref[Tensor(F32)][64]    # stat.backbone.layer1.1.bn2.gamma
+        , %para343 : Ref[Tensor(F32)][64]    # stat.backbone.layer1.1.bn2.beta
+        , %para344 : Ref[Tensor(F32)][256, 64, 1, 1]    # stat.backbone.layer1.1.conv3.weight
+        , %para345 : Ref[Tensor(F32)][256]    # stat.backbone.layer1.1.bn3.gamma
+        , %para346 : Ref[Tensor(F32)][256]    # stat.backbone.layer1.1.bn3.beta
+        , %para347 : Ref[Tensor(F32)][64, 256, 1, 1]    # stat.backbone.layer1.2.conv1.weight
+        , %para348 : Ref[Tensor(F32)][64]    # stat.backbone.layer1.2.bn1.gamma
+        , %para349 : Ref[Tensor(F32)][64]    # stat.backbone.layer1.2.bn1.beta
+        , %para350 : Ref[Tensor(F32)][64, 64, 3, 3]    # stat.backbone.layer1.2.conv2.weight
+        , %para351 : Ref[Tensor(F32)][64]    # stat.backbone.layer1.2.bn2.gamma
+        , %para352 : Ref[Tensor(F32)][64]    # stat.backbone.layer1.2.bn2.beta
+        , %para353 : Ref[Tensor(F32)][256, 64, 1, 1]    # stat.backbone.layer1.2.conv3.weight
+        , %para354 : Ref[Tensor(F32)][256]    # stat.backbone.layer1.2.bn3.gamma
+        , %para355 : Ref[Tensor(F32)][256]    # stat.backbone.layer1.2.bn3.beta
+        , %para356 : Ref[Tensor(F32)][128, 256, 1, 1]    # stat.backbone.layer2.0.conv1.weight
+        , %para357 : Ref[Tensor(F32)][128]    # stat.backbone.layer2.0.bn1.gamma
+        , %para358 : Ref[Tensor(F32)][128]    # stat.backbone.layer2.0.bn1.beta
+        , %para359 : Ref[Tensor(F32)][128, 128, 3, 3]    # stat.backbone.layer2.0.conv2.weight
+        , %para360 : Ref[Tensor(F32)][128]    # stat.backbone.layer2.0.bn2.gamma
+        , %para361 : Ref[Tensor(F32)][128]    # stat.backbone.layer2.0.bn2.beta
+        , %para362 : Ref[Tensor(F32)][512, 128, 1, 1]    # stat.backbone.layer2.0.conv3.weight
+        , %para363 : Ref[Tensor(F32)][512]    # stat.backbone.layer2.0.bn3.gamma
+        , %para364 : Ref[Tensor(F32)][512]    # stat.backbone.layer2.0.bn3.beta
+        , %para365 : Ref[Tensor(F32)][512, 256, 1, 1]    # stat.backbone.layer2.0.down_sample_layer.0.weight
+        , %para366 : Ref[Tensor(F32)][512]    # stat.backbone.layer2.0.down_sample_layer.1.gamma
+        , %para367 : Ref[Tensor(F32)][512]    # stat.backbone.layer2.0.down_sample_layer.1.beta
+        , %para368 : Ref[Tensor(F32)][128, 512, 1, 1]    # stat.backbone.layer2.1.conv1.weight
+        , %para369 : Ref[Tensor(F32)][128]    # stat.backbone.layer2.1.bn1.gamma
+        , %para370 : Ref[Tensor(F32)][128]    # stat.backbone.layer2.1.bn1.beta
+        , %para371 : Ref[Tensor(F32)][128, 128, 3, 3]    # stat.backbone.layer2.1.conv2.weight
+        , %para372 : Ref[Tensor(F32)][128]    # stat.backbone.layer2.1.bn2.gamma
+        , %para373 : Ref[Tensor(F32)][128]    # stat.backbone.layer2.1.bn2.beta
+        , %para374 : Ref[Tensor(F32)][512, 128, 1, 1]    # stat.backbone.layer2.1.conv3.weight
+        , %para375 : Ref[Tensor(F32)][512]    # stat.backbone.layer2.1.bn3.gamma
+        , %para376 : Ref[Tensor(F32)][512]    # stat.backbone.layer2.1.bn3.beta
+        , %para377 : Ref[Tensor(F32)][128, 512, 1, 1]    # stat.backbone.layer2.2.conv1.weight
+        , %para378 : Ref[Tensor(F32)][128]    # stat.backbone.layer2.2.bn1.gamma
+        , %para379 : Ref[Tensor(F32)][128]    # stat.backbone.layer2.2.bn1.beta
+        , %para380 : Ref[Tensor(F32)][128, 128, 3, 3]    # stat.backbone.layer2.2.conv2.weight
+        , %para381 : Ref[Tensor(F32)][128]    # stat.backbone.layer2.2.bn2.gamma
+        , %para382 : Ref[Tensor(F32)][128]    # stat.backbone.layer2.2.bn2.beta
+        , %para383 : Ref[Tensor(F32)][512, 128, 1, 1]    # stat.backbone.layer2.2.conv3.weight
+        , %para384 : Ref[Tensor(F32)][512]    # stat.backbone.layer2.2.bn3.gamma
+        , %para385 : Ref[Tensor(F32)][512]    # stat.backbone.layer2.2.bn3.beta
+        , %para386 : Ref[Tensor(F32)][128, 512, 1, 1]    # stat.backbone.layer2.3.conv1.weight
+        , %para387 : Ref[Tensor(F32)][128]    # stat.backbone.layer2.3.bn1.gamma
+        , %para388 : Ref[Tensor(F32)][128]    # stat.backbone.layer2.3.bn1.beta
+        , %para389 : Ref[Tensor(F32)][128, 128, 3, 3]    # stat.backbone.layer2.3.conv2.weight
+        , %para390 : Ref[Tensor(F32)][128]    # stat.backbone.layer2.3.bn2.gamma
+        , %para391 : Ref[Tensor(F32)][128]    # stat.backbone.layer2.3.bn2.beta
+        , %para392 : Ref[Tensor(F32)][512, 128, 1, 1]    # stat.backbone.layer2.3.conv3.weight
+        , %para393 : Ref[Tensor(F32)][512]    # stat.backbone.layer2.3.bn3.gamma
+        , %para394 : Ref[Tensor(F32)][512]    # stat.backbone.layer2.3.bn3.beta
+        , %para395 : Ref[Tensor(F32)][256, 512, 1, 1]    # stat.backbone.layer3.0.conv1.weight
+        , %para396 : Ref[Tensor(F32)][256]    # stat.backbone.layer3.0.bn1.gamma
+        , %para397 : Ref[Tensor(F32)][256]    # stat.backbone.layer3.0.bn1.beta
+        , %para398 : Ref[Tensor(F32)][256, 256, 3, 3]    # stat.backbone.layer3.0.conv2.weight
+        , %para399 : Ref[Tensor(F32)][256]    # stat.backbone.layer3.0.bn2.gamma
+        , %para400 : Ref[Tensor(F32)][256]    # stat.backbone.layer3.0.bn2.beta
+        , %para401 : Ref[Tensor(F32)][1024, 256, 1, 1]    # stat.backbone.layer3.0.conv3.weight
+        , %para402 : Ref[Tensor(F32)][1024]    # stat.backbone.layer3.0.bn3.gamma
+        , %para403 : Ref[Tensor(F32)][1024]    # stat.backbone.layer3.0.bn3.beta
+        , %para404 : Ref[Tensor(F32)][1024, 512, 1, 1]    # stat.backbone.layer3.0.down_sample_layer.0.weight
+        , %para405 : Ref[Tensor(F32)][1024]    # stat.backbone.layer3.0.down_sample_layer.1.gamma
+        , %para406 : Ref[Tensor(F32)][1024]    # stat.backbone.layer3.0.down_sample_layer.1.beta
+        , %para407 : Ref[Tensor(F32)][256, 1024, 1, 1]    # stat.backbone.layer3.1.conv1.weight
+        , %para408 : Ref[Tensor(F32)][256]    # stat.backbone.layer3.1.bn1.gamma
+        , %para409 : Ref[Tensor(F32)][256]    # stat.backbone.layer3.1.bn1.beta
+        , %para410 : Ref[Tensor(F32)][256, 256, 3, 3]    # stat.backbone.layer3.1.conv2.weight
+        , %para411 : Ref[Tensor(F32)][256]    # stat.backbone.layer3.1.bn2.gamma
+        , %para412 : Ref[Tensor(F32)][256]    # stat.backbone.layer3.1.bn2.beta
+        , %para413 : Ref[Tensor(F32)][1024, 256, 1, 1]    # stat.backbone.layer3.1.conv3.weight
+        , %para414 : Ref[Tensor(F32)][1024]    # stat.backbone.layer3.1.bn3.gamma
+        , %para415 : Ref[Tensor(F32)][1024]    # stat.backbone.layer3.1.bn3.beta
+        , %para416 : Ref[Tensor(F32)][256, 1024, 1, 1]    # stat.backbone.layer3.2.conv1.weight
+        , %para417 : Ref[Tensor(F32)][256]    # stat.backbone.layer3.2.bn1.gamma
+        , %para418 : Ref[Tensor(F32)][256]    # stat.backbone.layer3.2.bn1.beta
+        , %para419 : Ref[Tensor(F32)][256, 256, 3, 3]    # stat.backbone.layer3.2.conv2.weight
+        , %para420 : Ref[Tensor(F32)][256]    # stat.backbone.layer3.2.bn2.gamma
+        , %para421 : Ref[Tensor(F32)][256]    # stat.backbone.layer3.2.bn2.beta
+        , %para422 : Ref[Tensor(F32)][1024, 256, 1, 1]    # stat.backbone.layer3.2.conv3.weight
+        , %para423 : Ref[Tensor(F32)][1024]    # stat.backbone.layer3.2.bn3.gamma
+        , %para424 : Ref[Tensor(F32)][1024]    # stat.backbone.layer3.2.bn3.beta
+        , %para425 : Ref[Tensor(F32)][256, 1024, 1, 1]    # stat.backbone.layer3.3.conv1.weight
+        , %para426 : Ref[Tensor(F32)][256]    # stat.backbone.layer3.3.bn1.gamma
+        , %para427 : Ref[Tensor(F32)][256]    # stat.backbone.layer3.3.bn1.beta
+        , %para428 : Ref[Tensor(F32)][256, 256, 3, 3]    # stat.backbone.layer3.3.conv2.weight
+        , %para429 : Ref[Tensor(F32)][256]    # stat.backbone.layer3.3.bn2.gamma
+        , %para430 : Ref[Tensor(F32)][256]    # stat.backbone.layer3.3.bn2.beta
+        , %para431 : Ref[Tensor(F32)][1024, 256, 1, 1]    # stat.backbone.layer3.3.conv3.weight
+        , %para432 : Ref[Tensor(F32)][1024]    # stat.backbone.layer3.3.bn3.gamma
+        , %para433 : Ref[Tensor(F32)][1024]    # stat.backbone.layer3.3.bn3.beta
+        , %para434 : Ref[Tensor(F32)][256, 1024, 1, 1]    # stat.backbone.layer3.4.conv1.weight
+        , %para435 : Ref[Tensor(F32)][256]    # stat.backbone.layer3.4.bn1.gamma
+        , %para436 : Ref[Tensor(F32)][256]    # stat.backbone.layer3.4.bn1.beta
+        , %para437 : Ref[Tensor(F32)][256, 256, 3, 3]    # stat.backbone.layer3.4.conv2.weight
+        , %para438 : Ref[Tensor(F32)][256]    # stat.backbone.layer3.4.bn2.gamma
+        , %para439 : Ref[Tensor(F32)][256]    # stat.backbone.layer3.4.bn2.beta
+        , %para440 : Ref[Tensor(F32)][1024, 256, 1, 1]    # stat.backbone.layer3.4.conv3.weight
+        , %para441 : Ref[Tensor(F32)][1024]    # stat.backbone.layer3.4.bn3.gamma
+        , %para442 : Ref[Tensor(F32)][1024]    # stat.backbone.layer3.4.bn3.beta
+        , %para443 : Ref[Tensor(F32)][256, 1024, 1, 1]    # stat.backbone.layer3.5.conv1.weight
+        , %para444 : Ref[Tensor(F32)][256]    # stat.backbone.layer3.5.bn1.gamma
+        , %para445 : Ref[Tensor(F32)][256]    # stat.backbone.layer3.5.bn1.beta
+        , %para446 : Ref[Tensor(F32)][256, 256, 3, 3]    # stat.backbone.layer3.5.conv2.weight
+        , %para447 : Ref[Tensor(F32)][256]    # stat.backbone.layer3.5.bn2.gamma
+        , %para448 : Ref[Tensor(F32)][256]    # stat.backbone.layer3.5.bn2.beta
+        , %para449 : Ref[Tensor(F32)][1024, 256, 1, 1]    # stat.backbone.layer3.5.conv3.weight
+        , %para450 : Ref[Tensor(F32)][1024]    # stat.backbone.layer3.5.bn3.gamma
+        , %para451 : Ref[Tensor(F32)][1024]    # stat.backbone.layer3.5.bn3.beta
+        , %para452 : Ref[Tensor(F32)][512, 1024, 1, 1]    # stat.backbone.layer4.0.conv1.weight
+        , %para453 : Ref[Tensor(F32)][512]    # stat.backbone.layer4.0.bn1.gamma
+        , %para454 : Ref[Tensor(F32)][512]    # stat.backbone.layer4.0.bn1.beta
+        , %para455 : Ref[Tensor(F32)][512, 512, 3, 3]    # stat.backbone.layer4.0.conv2.weight
+        , %para456 : Ref[Tensor(F32)][512]    # stat.backbone.layer4.0.bn2.gamma
+        , %para457 : Ref[Tensor(F32)][512]    # stat.backbone.layer4.0.bn2.beta
+        , %para458 : Ref[Tensor(F32)][2048, 512, 1, 1]    # stat.backbone.layer4.0.conv3.weight
+        , %para459 : Ref[Tensor(F32)][2048]    # stat.backbone.layer4.0.bn3.gamma
+        , %para460 : Ref[Tensor(F32)][2048]    # stat.backbone.layer4.0.bn3.beta
+        , %para461 : Ref[Tensor(F32)][2048, 1024, 1, 1]    # stat.backbone.layer4.0.down_sample_layer.0.weight
+        , %para462 : Ref[Tensor(F32)][2048]    # stat.backbone.layer4.0.down_sample_layer.1.gamma
+        , %para463 : Ref[Tensor(F32)][2048]    # stat.backbone.layer4.0.down_sample_layer.1.beta
+        , %para464 : Ref[Tensor(F32)][512, 2048, 1, 1]    # stat.backbone.layer4.1.conv1.weight
+        , %para465 : Ref[Tensor(F32)][512]    # stat.backbone.layer4.1.bn1.gamma
+        , %para466 : Ref[Tensor(F32)][512]    # stat.backbone.layer4.1.bn1.beta
+        , %para467 : Ref[Tensor(F32)][512, 512, 3, 3]    # stat.backbone.layer4.1.conv2.weight
+        , %para468 : Ref[Tensor(F32)][512]    # stat.backbone.layer4.1.bn2.gamma
+        , %para469 : Ref[Tensor(F32)][512]    # stat.backbone.layer4.1.bn2.beta
+        , %para470 : Ref[Tensor(F32)][2048, 512, 1, 1]    # stat.backbone.layer4.1.conv3.weight
+        , %para471 : Ref[Tensor(F32)][2048]    # stat.backbone.layer4.1.bn3.gamma
+        , %para472 : Ref[Tensor(F32)][2048]    # stat.backbone.layer4.1.bn3.beta
+        , %para473 : Ref[Tensor(F32)][512, 2048, 1, 1]    # stat.backbone.layer4.2.conv1.weight
+        , %para474 : Ref[Tensor(F32)][512]    # stat.backbone.layer4.2.bn1.gamma
+        , %para475 : Ref[Tensor(F32)][512]    # stat.backbone.layer4.2.bn1.beta
+        , %para476 : Ref[Tensor(F32)][512, 512, 3, 3]    # stat.backbone.layer4.2.conv2.weight
+        , %para477 : Ref[Tensor(F32)][512]    # stat.backbone.layer4.2.bn2.gamma
+        , %para478 : Ref[Tensor(F32)][512]    # stat.backbone.layer4.2.bn2.beta
+        , %para479 : Ref[Tensor(F32)][2048, 512, 1, 1]    # stat.backbone.layer4.2.conv3.weight
+        , %para480 : Ref[Tensor(F32)][2048]    # stat.backbone.layer4.2.bn3.gamma
+        , %para481 : Ref[Tensor(F32)][2048]    # stat.backbone.layer4.2.bn3.beta
+        , %para482 : Ref[Tensor(F32)][13938, 2048]    # stat.backbone.end_point.weight
+        , %para483 : Ref[Tensor(F32)][13938]    # stat.backbone.end_point.bias
+        , %para484 : Ref[Tensor(F32)][]    # momentum
+        , %para485 : Ref[Tensor(F32)][]    # learning_rate
+        , %para486 : Ref[Tensor(I32)][1]    # global_step
+        , %para487 : Ref[Tensor(F32)][64]    # backbone.bn1.moving_mean
+        , %para488 : Ref[Tensor(F32)][64]    # backbone.bn1.moving_variance
+        , %para489 : Ref[Tensor(F32)][512]    # backbone.layer4.0.bn2.moving_mean
+        , %para490 : Ref[Tensor(F32)][512]    # backbone.layer4.0.bn2.moving_variance
+        , %para491 : Ref[Tensor(F32)][512]    # backbone.layer4.1.bn2.moving_mean
+        , %para492 : Ref[Tensor(F32)][512]    # backbone.layer4.1.bn2.moving_variance
+        , %para493 : Ref[Tensor(F32)][512]    # backbone.layer4.2.bn2.moving_mean
+        , %para494 : Ref[Tensor(F32)][512]    # backbone.layer4.2.bn2.moving_variance
+        , %para495 : Ref[Tensor(F32)][2048]    # backbone.layer4.0.bn3.moving_mean
+        , %para496 : Ref[Tensor(F32)][2048]    # backbone.layer4.0.bn3.moving_variance
+        , %para497 : Ref[Tensor(F32)][512]    # backbone.layer4.0.bn1.moving_mean
+        , %para498 : Ref[Tensor(F32)][512]    # backbone.layer4.0.bn1.moving_variance
+        , %para499 : Ref[Tensor(F32)][2048]    # backbone.layer4.1.bn3.moving_mean
+        , %para500 : Ref[Tensor(F32)][2048]    # backbone.layer4.1.bn3.moving_variance
+        , %para501 : Ref[Tensor(F32)][512]    # backbone.layer4.1.bn1.moving_mean
+        , %para502 : Ref[Tensor(F32)][512]    # backbone.layer4.1.bn1.moving_variance
+        , %para503 : Ref[Tensor(F32)][2048]    # backbone.layer4.2.bn3.moving_mean
+        , %para504 : Ref[Tensor(F32)][2048]    # backbone.layer4.2.bn3.moving_variance
+        , %para505 : Ref[Tensor(F32)][512]    # backbone.layer4.2.bn1.moving_mean
+        , %para506 : Ref[Tensor(F32)][512]    # backbone.layer4.2.bn1.moving_variance
+        , %para507 : Ref[Tensor(F32)][256]    # backbone.layer3.0.bn2.moving_mean
+        , %para508 : Ref[Tensor(F32)][256]    # backbone.layer3.0.bn2.moving_variance
+        , %para509 : Ref[Tensor(F32)][256]    # backbone.layer3.1.bn2.moving_mean
+        , %para510 : Ref[Tensor(F32)][256]    # backbone.layer3.1.bn2.moving_variance
+        , %para511 : Ref[Tensor(F32)][256]    # backbone.layer3.2.bn2.moving_mean
+        , %para512 : Ref[Tensor(F32)][256]    # backbone.layer3.2.bn2.moving_variance
+        , %para513 : Ref[Tensor(F32)][256]    # backbone.layer3.3.bn2.moving_mean
+        , %para514 : Ref[Tensor(F32)][256]    # backbone.layer3.3.bn2.moving_variance
+        , %para515 : Ref[Tensor(F32)][256]    # backbone.layer3.4.bn2.moving_mean
+        , %para516 : Ref[Tensor(F32)][256]    # backbone.layer3.4.bn2.moving_variance
+        , %para517 : Ref[Tensor(F32)][256]    # backbone.layer3.5.bn2.moving_mean
+        , %para518 : Ref[Tensor(F32)][256]    # backbone.layer3.5.bn2.moving_variance
+        , %para519 : Ref[Tensor(F32)][1024]    # backbone.layer3.0.bn3.moving_mean
+        , %para520 : Ref[Tensor(F32)][1024]    # backbone.layer3.0.bn3.moving_variance
+        , %para521 : Ref[Tensor(F32)][256]    # backbone.layer3.0.bn1.moving_mean
+        , %para522 : Ref[Tensor(F32)][256]    # backbone.layer3.0.bn1.moving_variance
+        , %para523 : Ref[Tensor(F32)][1024]    # backbone.layer3.1.bn3.moving_mean
+        , %para524 : Ref[Tensor(F32)][1024]    # backbone.layer3.1.bn3.moving_variance
+        , %para525 : Ref[Tensor(F32)][256]    # backbone.layer3.1.bn1.moving_mean
+        , %para526 : Ref[Tensor(F32)][256]    # backbone.layer3.1.bn1.moving_variance
+        , %para527 : Ref[Tensor(F32)][1024]    # backbone.layer3.2.bn3.moving_mean
+        , %para528 : Ref[Tensor(F32)][1024]    # backbone.layer3.2.bn3.moving_variance
+        , %para529 : Ref[Tensor(F32)][256]    # backbone.layer3.2.bn1.moving_mean
+        , %para530 : Ref[Tensor(F32)][256]    # backbone.layer3.2.bn1.moving_variance
+        , %para531 : Ref[Tensor(F32)][1024]    # backbone.layer3.3.bn3.moving_mean
+        , %para532 : Ref[Tensor(F32)][1024]    # backbone.layer3.3.bn3.moving_variance
+        , %para533 : Ref[Tensor(F32)][256]    # backbone.layer3.3.bn1.moving_mean
+        , %para534 : Ref[Tensor(F32)][256]    # backbone.layer3.3.bn1.moving_variance
+        , %para535 : Ref[Tensor(F32)][1024]    # backbone.layer3.4.bn3.moving_mean
+        , %para536 : Ref[Tensor(F32)][1024]    # backbone.layer3.4.bn3.moving_variance
+        , %para537 : Ref[Tensor(F32)][256]    # backbone.layer3.4.bn1.moving_mean
+        , %para538 : Ref[Tensor(F32)][256]    # backbone.layer3.4.bn1.moving_variance
+        , %para539 : Ref[Tensor(F32)][1024]    # backbone.layer3.5.bn3.moving_mean
+        , %para540 : Ref[Tensor(F32)][1024]    # backbone.layer3.5.bn3.moving_variance
+        , %para541 : Ref[Tensor(F32)][256]    # backbone.layer3.5.bn1.moving_mean
+        , %para542 : Ref[Tensor(F32)][256]    # backbone.layer3.5.bn1.moving_variance
+        , %para543 : Ref[Tensor(F32)][128]    # backbone.layer2.0.bn2.moving_mean
+        , %para544 : Ref[Tensor(F32)][128]    # backbone.layer2.0.bn2.moving_variance
+        , %para545 : Ref[Tensor(F32)][128]    # backbone.layer2.1.bn2.moving_mean
+        , %para546 : Ref[Tensor(F32)][128]    # backbone.layer2.1.bn2.moving_variance
+        , %para547 : Ref[Tensor(F32)][128]    # backbone.layer2.2.bn2.moving_mean
+        , %para548 : Ref[Tensor(F32)][128]    # backbone.layer2.2.bn2.moving_variance
+        , %para549 : Ref[Tensor(F32)][128]    # backbone.layer2.3.bn2.moving_mean
+        , %para550 : Ref[Tensor(F32)][128]    # backbone.layer2.3.bn2.moving_variance
+        , %para551 : Ref[Tensor(F32)][512]    # backbone.layer2.0.bn3.moving_mean
+        , %para552 : Ref[Tensor(F32)][512]    # backbone.layer2.0.bn3.moving_variance
+        , %para553 : Ref[Tensor(F32)][128]    # backbone.layer2.0.bn1.moving_mean
+        , %para554 : Ref[Tensor(F32)][128]    # backbone.layer2.0.bn1.moving_variance
+        , %para555 : Ref[Tensor(F32)][512]    # backbone.layer2.1.bn3.moving_mean
+        , %para556 : Ref[Tensor(F32)][512]    # backbone.layer2.1.bn3.moving_variance
+        , %para557 : Ref[Tensor(F32)][128]    # backbone.layer2.1.bn1.moving_mean
+        , %para558 : Ref[Tensor(F32)][128]    # backbone.layer2.1.bn1.moving_variance
+        , %para559 : Ref[Tensor(F32)][512]    # backbone.layer2.2.bn3.moving_mean
+        , %para560 : Ref[Tensor(F32)][512]    # backbone.layer2.2.bn3.moving_variance
+        , %para561 : Ref[Tensor(F32)][128]    # backbone.layer2.2.bn1.moving_mean
+        , %para562 : Ref[Tensor(F32)][128]    # backbone.layer2.2.bn1.moving_variance
+        , %para563 : Ref[Tensor(F32)][512]    # backbone.layer2.3.bn3.moving_mean
+        , %para564 : Ref[Tensor(F32)][512]    # backbone.layer2.3.bn3.moving_variance
+        , %para565 : Ref[Tensor(F32)][128]    # backbone.layer2.3.bn1.moving_mean
+        , %para566 : Ref[Tensor(F32)][128]    # backbone.layer2.3.bn1.moving_variance
+        , %para567 : Ref[Tensor(F32)][64]    # backbone.layer1.0.bn2.moving_mean
+        , %para568 : Ref[Tensor(F32)][64]    # backbone.layer1.0.bn2.moving_variance
+        , %para569 : Ref[Tensor(F32)][64]    # backbone.layer1.1.bn2.moving_mean
+        , %para570 : Ref[Tensor(F32)][64]    # backbone.layer1.1.bn2.moving_variance
+        , %para571 : Ref[Tensor(F32)][64]    # backbone.layer1.2.bn2.moving_mean
+        , %para572 : Ref[Tensor(F32)][64]    # backbone.layer1.2.bn2.moving_variance
+        , %para573 : Ref[Tensor(F32)][256]    # backbone.layer1.0.bn3.moving_mean
+        , %para574 : Ref[Tensor(F32)][256]    # backbone.layer1.0.bn3.moving_variance
+        , %para575 : Ref[Tensor(F32)][64]    # backbone.layer1.0.bn1.moving_mean
+        , %para576 : Ref[Tensor(F32)][64]    # backbone.layer1.0.bn1.moving_variance
+        , %para577 : Ref[Tensor(F32)][256]    # backbone.layer1.1.bn3.moving_mean
+        , %para578 : Ref[Tensor(F32)][256]    # backbone.layer1.1.bn3.moving_variance
+        , %para579 : Ref[Tensor(F32)][64]    # backbone.layer1.1.bn1.moving_mean
+        , %para580 : Ref[Tensor(F32)][64]    # backbone.layer1.1.bn1.moving_variance
+        , %para581 : Ref[Tensor(F32)][256]    # backbone.layer1.2.bn3.moving_mean
+        , %para582 : Ref[Tensor(F32)][256]    # backbone.layer1.2.bn3.moving_variance
+        , %para583 : Ref[Tensor(F32)][64]    # backbone.layer1.2.bn1.moving_mean
+        , %para584 : Ref[Tensor(F32)][64]    # backbone.layer1.2.bn1.moving_variance
+        , %para585 : Ref[Tensor(F32)][2048]    # backbone.layer4.0.down_sample_layer.1.moving_mean
+        , %para586 : Ref[Tensor(F32)][2048]    # backbone.layer4.0.down_sample_layer.1.moving_variance
+        , %para587 : Ref[Tensor(F32)][1024]    # backbone.layer3.0.down_sample_layer.1.moving_mean
+        , %para588 : Ref[Tensor(F32)][1024]    # backbone.layer3.0.down_sample_layer.1.moving_variance
+        , %para589 : Ref[Tensor(F32)][512]    # backbone.layer2.0.down_sample_layer.1.moving_mean
+        , %para590 : Ref[Tensor(F32)][512]    # backbone.layer2.0.down_sample_layer.1.moving_variance
+        , %para591 : Ref[Tensor(F32)][256]    # backbone.layer1.0.down_sample_layer.1.moving_mean
+        , %para592 : Ref[Tensor(F32)][256]    # backbone.layer1.0.down_sample_layer.1.moving_variance
+    ) {
+
+#------------------------> 0
+    %1 = FuncGraph::fg_3()    # fg_3=Default.3 #scope: Default
+#[CNode]12
+    Primitive::Return{prim_type=1}(%1)    #(Undefined) #scope: Default
+      # In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/train/dataset_helper.py:107/        return self.network(*outputs)/#[CNode]13
+}
+# order:
+#   1: @Default_wrapper.1:[CNode]12{[0]: ValueNode<FuncGraph> Default.3}
+#   2: @Default_wrapper.1:[CNode]13{[0]: ValueNode<Primitive> Return, [1]: [CNode]12}
+
+
+# [No.2] Default.3
+# In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/train/dataset_helper.py:105/    def construct(self):/
+funcgraph fg_3[fg_1](
+) {
+    %1 : Tuple[Tensor(F32),Tensor(I32)]TupleShape((2, 1, 128, 128), (2)) = DoSignaturePrimitive::S-Prim-GetNext{prim_type=1}[output_num=I64(2), shapes=[[I64(2), I64(1), I64(128), I64(128)], [I64(2)]], shared_name="7d024b5c-69b7-11ed-ac63-479578acb743", types=[F32, I32]]() #scope: Default
+      # In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/train/dataset_helper.py:106/        outputs = self.get_next()/#outputs
+
+#------------------------> 1
+    %2 = UnpackCall::unpack_call(FuncGraph::fg_14, %1)    #(FuncNoShape, Tuple[Tensor(F32),Tensor(I32)]TupleShape((2, 1, 128, 128), (2)))    # fg_14=TrainOneStepCell.14 #scope: Default
+      # In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/train/dataset_helper.py:107/        return self.network(*outputs)/#[CNode]15
+    Primitive::Return{prim_type=1}(%2)    #(Undefined) #scope: Default
+      # In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/train/dataset_helper.py:107/        return self.network(*outputs)/#[CNode]16
+}
+# order:
+#   1: @Default.3:outputs{[0]: ValueNode<DoSignaturePrimitive> S-Prim-GetNext}
+#   2: @Default.3:[CNode]15{[0]: ValueNode<UnpackCall> unpack_call.17, [1]: ValueNode<FuncGraph> TrainOneStepCell.14, [2]: outputs}
+#   3: @Default.3:[CNode]16{[0]: ValueNode<Primitive> Return, [1]: [CNode]15}
+
+
+# [No.3] UnpackCall.4
+
+funcgraph fg_4(
+        %para593 : FuncNoShape    # 5
+        , %para594 : Tuple[Tensor(F32),Tensor(I32)]TupleShape((2, 1, 128, 128), (2))    # 6
+    ) {
+    %1 : Tensor(F32)[2, 1, 128, 128] = Primitive::TupleGetItem{prim_type=1}(%para594, I64(0))    #(Tuple[Tensor(F32),Tensor(I32)]TupleShape((2, 1, 128, 128), (2)), I64NoShape) #scope: Default
+#18
+    %2 : Tensor(I32)[2] = Primitive::TupleGetItem{prim_type=1}(%para594, I64(1))    #(Tuple[Tensor(F32),Tensor(I32)]TupleShape((2, 1, 128, 128), (2)), I64NoShape) #scope: Default
+#19
+
+#------------------------> 2
+    %3 = %para593(%1, %2)    #(Tensor(F32)[2, 1, 128, 128], Tensor(I32)[2]) #scope: Default
+#20
+    Primitive::Return{prim_type=1}(%3)    #(Undefined) #scope: Default
+#21
+}
+# order:
+#   1: @UnpackCall.4:20{[0]: 5, [1]: 18, [2]: 19}
+#   2: @UnpackCall.4:21{[0]: ValueNode<Primitive> Return, [1]: 20}
+
+
+# [No.4] TrainOneStepCell.7
+# In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/wrap/cell_wrapper.py:379/    def construct(self, *inputs):/
+funcgraph fg_7[fg_1](
+        %para595 : Tensor(F32)[2, 1, 128, 128]    # inputs0
+        , %para596 : Tensor(I32)[2]    # inputs1
+    ) {
+    %1 : Tuple[Tensor(F32),Tensor(I32)]TupleShape((2, 1, 128, 128), (2)) = Primitive::MakeTuple{prim_type=1}(%para595, %para596)    #(Tensor(F32)[2, 1, 128, 128], Tensor(I32)[2]) #scope: Default
+      # In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/wrap/cell_wrapper.py:379/    def construct(self, *inputs):/#[CNode]22
+
+#------------------------> 3
+    %2 = UnpackCall::unpack_call(FuncGraph::fg_11, %1)    #(FuncNoShape, Tuple[Tensor(F32),Tensor(I32)]TupleShape((2, 1, 128, 128), (2)))    # fg_11=WithLossCell.11 #scope: Default/network-TrainOneStepCell
+      # In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/wrap/cell_wrapper.py:380/        loss = self.network(*inputs)/#loss
+    %3 = Primitive::getattr{prim_type=1}(%2, "dtype")    #(Undefined, Undefined) #scope: Default/network-TrainOneStepCell
+      # In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/wrap/cell_wrapper.py:381/        sens = F.fill(loss.dtype, loss.shape, self.sens)/#[CNode]23
+    %4 = Primitive::getattr{prim_type=1}(%2, "shape")    #(Undefined, Undefined) #scope: Default/network-TrainOneStepCell
+      # In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/wrap/cell_wrapper.py:381/        sens = F.fill(loss.dtype, loss.shape, self.sens)/#[CNode]24
+    %5 = FuncGraph::fg_25(%3, %4, F32(1))    #(Undefined, Undefined, Undefined)    # fg_25=fill.25 #scope: Default/network-TrainOneStepCell
+      # In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/wrap/cell_wrapper.py:381/        sens = F.fill(loss.dtype, loss.shape, self.sens)/#sens
+    %6 = DoSignaturePrimitive::S-Prim-MakeTuple{prim_type=1}(%5)    #(Undefined) #scope: Default/network-TrainOneStepCell
+      # In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/wrap/cell_wrapper.py:382/        grads = self.grad(self.network, self.weights)(*inputs, sens)/#[CNode]26
+    %7 = UnpackGraphPrimitive::UnpackGraph{prim_type=1}(FuncGraph::fg_11, %1, %6)    #(Undefined, Tuple[Tensor(F32),Tensor(I32)]TupleShape((2, 1, 128, 128), (2)), Undefined)    # fg_11=WithLossCell.11 #scope: Default/network-TrainOneStepCell
+      # In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/wrap/cell_wrapper.py:382/        grads = self.grad(self.network, self.weights)(*inputs, sens)/#grads
+    %8 = Primitive::MakeTuple{prim_type=1}(%para1, %para2, %para3, %para4, %para5, %para6, %para7, %para8, %para9, %para10, %para11, %para12, %para13, %para14, %para15, %para16, %para17, %para18, %para19, %para20, %para21, %para22, %para23, %para24, %para25, %para26, %para27, %para28, %para29, %para30, %para31, %para32, %para33, %para34, %para35, %para36, %para37, %para38, %para39, %para40, %para41, %para42, %para43, %para44, %para45, %para46, %para47, %para48, %para49, %para50, %para51, %para52, %para53, %para54, %para55, %para56, %para57, %para58, %para59, %para60, %para61, %para62, %para63, %para64, %para65, %para66, %para67, %para68, %para69, %para70, %para71, %para72, %para73, %para74, %para75, %para76, %para77, %para78, %para79, %para80, %para81, %para82, %para83, %para84, %para85, %para86, %para87, %para88, %para89, %para90, %para91, %para92, %para93, %para94, %para95, %para96, %para97, %para98, %para99, %para100, %para101, %para102, %para103, %para104, %para105, %para106, %para107, %para108, %para109, %para110, %para111, %para112, %para113, %para114, %para115, %para116, %para117, %para118, %para119, %para120, %para121, %para122, %para123, %para124, %para125, %para126, %para127, %para128, %para129, %para130, %para131, %para132, %para133, %para134, %para135, %para136, %para137, %para138, %para139, %para140, %para141, %para142, %para143, %para144, %para145, %para146, %para147, %para148, %para149, %para150, %para151, %para152, %para153, %para154, %para155, %para156, %para157, %para158, %para159, %para160, %para161)    #(Ref[Tensor(F32)][64, 3, 7, 7], Ref[Tensor(F32)][64], Ref[Tensor(F32)][64], Ref[Tensor(F32)][64, 64, 1, 1], Ref[Tensor(F32)][64], Ref[Tensor(F32)][64], Ref[Tensor(F32)][64, 64, 3, 3], Ref[Tensor(F32)][64], Ref[Tensor(F32)][64], Ref[Tensor(F32)][256, 64, 1, 1], Ref[Tensor(F32)][256], Ref[Tensor(F32)][256], Ref[Tensor(F32)][256, 64, 1, 1], Ref[Tensor(F32)][256], Ref[Tensor(F32)][256], Ref[Tensor(F32)][64, 256, 1, 1], Ref[Tensor(F32)][64], Ref[Tensor(F32)][64], Ref[Tensor(F32)][64, 64, 3, 3], Ref[Tensor(F32)][64], Ref[Tensor(F32)][64], Ref[Tensor(F32)][256, 64, 1, 1], Ref[Tensor(F32)][256], Ref[Tensor(F32)][256], Ref[Tensor(F32)][64, 256, 1, 1], Ref[Tensor(F32)][64], Ref[Tensor(F32)][64], Ref[Tensor(F32)][64, 64, 3, 3], Ref[Tensor(F32)][64], Ref[Tensor(F32)][64], Ref[Tensor(F32)][256, 64, 1, 1], Ref[Tensor(F32)][256], Ref[Tensor(F32)][256], Ref[Tensor(F32)][128, 256, 1, 1], Ref[Tensor(F32)][128], Ref[Tensor(F32)][128], Ref[Tensor(F32)][128, 128, 3, 3], Ref[Tensor(F32)][128], Ref[Tensor(F32)][128], Ref[Tensor(F32)][512, 128, 1, 1], Ref[Tensor(F32)][512], Ref[Tensor(F32)][512], Ref[Tensor(F32)][512, 256, 1, 1], Ref[Tensor(F32)][512], Ref[Tensor(F32)][512], Ref[Tensor(F32)][128, 512, 1, 1], Ref[Tensor(F32)][128], Ref[Tensor(F32)][128], Ref[Tensor(F32)][128, 128, 3, 3], Ref[Tensor(F32)][128], Ref[Tensor(F32)][128], Ref[Tensor(F32)][512, 128, 1, 1], Ref[Tensor(F32)][512], Ref[Tensor(F32)][512], Ref[Tensor(F32)][128, 512, 1, 1], Ref[Tensor(F32)][128], Ref[Tensor(F32)][128], Ref[Tensor(F32)][128, 128, 3, 3], Ref[Tensor(F32)][128], Ref[Tensor(F32)][128], Ref[Tensor(F32)][512, 128, 1, 1], Ref[Tensor(F32)][512], Ref[Tensor(F32)][512], Ref[Tensor(F32)][128, 512, 1, 1], Ref[Tensor(F32)][128], Ref[Tensor(F32)][128], Ref[Tensor(F32)][128, 128, 3, 3], Ref[Tensor(F32)][128], Ref[Tensor(F32)][128], Ref[Tensor(F32)][512, 128, 1, 1], Ref[Tensor(F32)][512], Ref[Tensor(F32)][512], Ref[Tensor(F32)][256, 512, 1, 1], Ref[Tensor(F32)][256], Ref[Tensor(F32)][256], Ref[Tensor(F32)][256, 256, 3, 3], Ref[Tensor(F32)][256], Ref[Tensor(F32)][256], Ref[Tensor(F32)][1024, 256, 1, 1], Ref[Tensor(F32)][1024], Ref[Tensor(F32)][1024], Ref[Tensor(F32)][1024, 512, 1, 1], Ref[Tensor(F32)][1024], Ref[Tensor(F32)][1024], Ref[Tensor(F32)][256, 1024, 1, 1], Ref[Tensor(F32)][256], Ref[Tensor(F32)][256], Ref[Tensor(F32)][256, 256, 3, 3], Ref[Tensor(F32)][256], Ref[Tensor(F32)][256], Ref[Tensor(F32)][1024, 256, 1, 1], Ref[Tensor(F32)][1024], Ref[Tensor(F32)][1024], Ref[Tensor(F32)][256, 1024, 1, 1], Ref[Tensor(F32)][256], Ref[Tensor(F32)][256], Ref[Tensor(F32)][256, 256, 3, 3], Ref[Tensor(F32)][256], Ref[Tensor(F32)][256], Ref[Tensor(F32)][1024, 256, 1, 1], Ref[Tensor(F32)][1024], Ref[Tensor(F32)][1024], Ref[Tensor(F32)][256, 1024, 1, 1], Ref[Tensor(F32)][256], Ref[Tensor(F32)][256], Ref[Tensor(F32)][256, 256, 3, 3], Ref[Tensor(F32)][256], Ref[Tensor(F32)][256], Ref[Tensor(F32)][1024, 256, 1, 1], Ref[Tensor(F32)][1024], Ref[Tensor(F32)][1024], Ref[Tensor(F32)][256, 1024, 1, 1], Ref[Tensor(F32)][256], Ref[Tensor(F32)][256], Ref[Tensor(F32)][256, 256, 3, 3], Ref[Tensor(F32)][256], Ref[Tensor(F32)][256], Ref[Tensor(F32)][1024, 256, 1, 1], Ref[Tensor(F32)][1024], Ref[Tensor(F32)][1024], Ref[Tensor(F32)][256, 1024, 1, 1], Ref[Tensor(F32)][256], Ref[Tensor(F32)][256], Ref[Tensor(F32)][256, 256, 3, 3], Ref[Tensor(F32)][256], Ref[Tensor(F32)][256], Ref[Tensor(F32)][1024, 256, 1, 1], Ref[Tensor(F32)][1024], Ref[Tensor(F32)][1024], Ref[Tensor(F32)][512, 1024, 1, 1], Ref[Tensor(F32)][512], Ref[Tensor(F32)][512], Ref[Tensor(F32)][512, 512, 3, 3], Ref[Tensor(F32)][512], Ref[Tensor(F32)][512], Ref[Tensor(F32)][2048, 512, 1, 1], Ref[Tensor(F32)][2048], Ref[Tensor(F32)][2048], Ref[Tensor(F32)][2048, 1024, 1, 1], Ref[Tensor(F32)][2048], Ref[Tensor(F32)][2048], Ref[Tensor(F32)][512, 2048, 1, 1], Ref[Tensor(F32)][512], Ref[Tensor(F32)][512], Ref[Tensor(F32)][512, 512, 3, 3], Ref[Tensor(F32)][512], Ref[Tensor(F32)][512], Ref[Tensor(F32)][2048, 512, 1, 1], Ref[Tensor(F32)][2048], Ref[Tensor(F32)][2048], Ref[Tensor(F32)][512, 2048, 1, 1], Ref[Tensor(F32)][512], Ref[Tensor(F32)][512], Ref[Tensor(F32)][512, 512, 3, 3], Ref[Tensor(F32)][512], Ref[Tensor(F32)][512], Ref[Tensor(F32)][2048, 512, 1, 1], Ref[Tensor(F32)][2048], Ref[Tensor(F32)][2048], Ref[Tensor(F32)][13938, 2048], Ref[Tensor(F32)][13938]) #scope: Default/network-TrainOneStepCell
+      # In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/wrap/cell_wrapper.py:382/        grads = self.grad(self.network, self.weights)(*inputs, sens)/#[CNode]27
+    %9 = DoSignaturePrimitive::S-Prim-grad{prim_type=1}(%7, %8)    #(Undefined, Undefined) #scope: Default/network-TrainOneStepCell
+      # In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/wrap/cell_wrapper.py:382/        grads = self.grad(self.network, self.weights)(*inputs, sens)/#grads
+    %10 = UnpackCall::unpack_call(%9, %1, %6)    #(Undefined, Tuple[Tensor(F32),Tensor(I32)]TupleShape((2, 1, 128, 128), (2)), Undefined) #scope: Default/network-TrainOneStepCell
+      # In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/wrap/cell_wrapper.py:382/        grads = self.grad(self.network, self.weights)(*inputs, sens)/#grads
+    %11 = DoSignaturePrimitive::S-Prim-identity{prim_type=1}[side_effect_propagate=I64(1)](%10)    #(Undefined) #scope: Default/network-TrainOneStepCell
+      # In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/wrap/cell_wrapper.py:383/        grads = self.grad_reducer(grads)/#grads
+    %12 = FuncGraph::fg_28(%11)    #(Undefined)    # fg_28=SGD.28 #scope: Default/network-TrainOneStepCell
+      # In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/wrap/cell_wrapper.py:384/        loss = F.depend(loss, self.optimizer(grads))/#[CNode]29
+    %13 = DoSignaturePrimitive::S-Prim-Depend{prim_type=1}[side_effect_propagate=I64(1)](%2, %12)    #(Undefined, Undefined) #scope: Default/network-TrainOneStepCell
+      # In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/wrap/cell_wrapper.py:384/        loss = F.depend(loss, self.optimizer(grads))/#loss
+    Primitive::Return{prim_type=1}(%13)    #(Undefined) #scope: Default/network-TrainOneStepCell
+      # In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/wrap/cell_wrapper.py:385/        return loss/#[CNode]30
+}
+# order:
+#   1: @TrainOneStepCell.7:loss{[0]: ValueNode<UnpackCall> unpack_call.31, [1]: ValueNode<FuncGraph> WithLossCell.11, [2]: [CNode]22}
+#   2: @TrainOneStepCell.7:[CNode]23{[0]: ValueNode<Primitive> getattr, [1]: loss, [2]: ValueNode<StringImm> dtype}
+#   3: @TrainOneStepCell.7:[CNode]24{[0]: ValueNode<Primitive> getattr, [1]: loss, [2]: ValueNode<StringImm> shape}
+#   4: @TrainOneStepCell.7:sens{[0]: ValueNode<FuncGraph> fill.25, [1]: [CNode]23, [2]: [CNode]24, [3]: ValueNode<FP32Imm> 1.000000}
+#   5: @TrainOneStepCell.7:[CNode]26{[0]: ValueNode<DoSignaturePrimitive> S-Prim-MakeTuple, [1]: sens}
+#   6: @TrainOneStepCell.7:grads{[0]: ValueNode<UnpackGraphPrimitive> UnpackGraph, [1]: ValueNode<FuncGraph> WithLossCell.11, [2]: [CNode]22, [3]: [CNode]26}
+#   7: @TrainOneStepCell.7:grads{[0]: ValueNode<DoSignaturePrimitive> S-Prim-grad, [1]: grads, [2]: [CNode]27}
+#   8: @TrainOneStepCell.7:grads{[0]: ValueNode<UnpackCall> unpack_call.32, [1]: grads, [2]: [CNode]22, [3]: [CNode]26}
+#   9: @TrainOneStepCell.7:grads{[0]: ValueNode<DoSignaturePrimitive> S-Prim-identity, [1]: grads}
+#  10: @TrainOneStepCell.7:[CNode]29{[0]: ValueNode<FuncGraph> SGD.28, [1]: grads}
+#  11: @TrainOneStepCell.7:loss{[0]: ValueNode<DoSignaturePrimitive> S-Prim-Depend, [1]: loss, [2]: [CNode]29}
+#  12: @TrainOneStepCell.7:[CNode]30{[0]: ValueNode<Primitive> Return, [1]: loss}
+
+
+# [No.5] UnpackCall.8
+
+funcgraph fg_8(
+        %para597 : FuncNoShape    # 9
+        , %para598 : Tuple[Tensor(F32),Tensor(I32)]TupleShape((2, 1, 128, 128), (2))    # 10
+    ) {
+    %1 : Tensor(F32)[2, 1, 128, 128] = Primitive::TupleGetItem{prim_type=1}(%para598, I64(0))    #(Tuple[Tensor(F32),Tensor(I32)]TupleShape((2, 1, 128, 128), (2)), I64NoShape) #scope: Default/network-TrainOneStepCell
+#33
+    %2 : Tensor(I32)[2] = Primitive::TupleGetItem{prim_type=1}(%para598, I64(1))    #(Tuple[Tensor(F32),Tensor(I32)]TupleShape((2, 1, 128, 128), (2)), I64NoShape) #scope: Default/network-TrainOneStepCell
+#34
+
+#------------------------> 4
+    %3 = %para597(%1, %2)    #(Tensor(F32)[2, 1, 128, 128], Tensor(I32)[2]) #scope: Default/network-TrainOneStepCell
+#35
+    Primitive::Return{prim_type=1}(%3)    #(Undefined) #scope: Default/network-TrainOneStepCell
+#36
+}
+# order:
+#   1: @UnpackCall.8:35{[0]: 9, [1]: 33, [2]: 34}
+#   2: @UnpackCall.8:36{[0]: ValueNode<Primitive> Return, [1]: 35}
+
+
+# [No.6] WithLossCell.11
+# In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/wrap/cell_wrapper.py:116/    def construct(self, data, label):/
+funcgraph fg_11[fg_1](
+        %para599 : Tensor(F32)[2, 1, 128, 128]    # data
+        , %para600 : Tensor(I32)[2]    # label
+    ) {
+
+#------------------------> 5
+    %1 = FuncGraph::fg_2(%para599)    #(Tensor(F32)[2, 1, 128, 128])    # fg_2=ArcFace.2 #scope: Default/network-TrainOneStepCell/network-WithLossCell
+      # In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/wrap/cell_wrapper.py:117/        out = self._backbone(data)/#out
+    %2 = FuncGraph::fg_37(%1, %para600)    #(Undefined, Tensor(I32)[2])    # fg_37=SoftmaxCrossEntropyWithLogits.37 #scope: Default/network-TrainOneStepCell/network-WithLossCell
+      # In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/wrap/cell_wrapper.py:118/        return self._loss_fn(out, label)/#[CNode]38
+    Primitive::Return{prim_type=1}(%2)    #(Undefined) #scope: Default/network-TrainOneStepCell/network-WithLossCell
+      # In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/wrap/cell_wrapper.py:118/        return self._loss_fn(out, label)/#[CNode]39
+}
+# order:
+#   1: @WithLossCell.11:out{[0]: ValueNode<FuncGraph> ArcFace.2, [1]: data}
+#   2: @WithLossCell.11:[CNode]38{[0]: ValueNode<FuncGraph> SoftmaxCrossEntropyWithLogits.37, [1]: out, [2]: label}
+#   3: @WithLossCell.11:[CNode]39{[0]: ValueNode<Primitive> Return, [1]: [CNode]38}
+
+
+#===============================================================================
+# num of function graphs in stack: 6
