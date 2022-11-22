@@ -11,26 +11,28 @@ from resnet import *
 
 
 if __name__ == '__main__':
-    image_folder_dataset_dir = "data/data_test"
+    image_folder_dataset_dir = "data/CASIA-maxpy-clean"
     train_dataset = get_dataset(image_folder_dataset_dir,"train")
     train_dataset = train_dataset.batch(32)
-    # for d,l in train_dataset:
-    #     print(d.shape)
 
     net = resnet50(13938)
-    loss = Asoftmax_loss()
+    # loss_fn = Asoftmax_loss()
+    loss_fn = nn.SoftmaxCrossEntropyWithLogits(sparse=True)
+    # for d,l in train_dataset:
+    #     print(d.shape)
+    #     output = net(d)
+    #     loss = loss_fn(output,l)
+    #     print(loss)
+        
+        
     opt = nn.SGD(net.trainable_params(),learning_rate=0.0001)
 
     model = ms.Model(network=net,
-                    loss_fn=loss,
+                    loss_fn=loss_fn,
                     optimizer=opt,
                     metrics={"Accuracy": nn.Accuracy()})
 
-    model.train(1, train_dataset, callbacks=[LossMonitor(0.0001)])
-#FIXME: 出了点问题，使用自动工具train时，对于Asoftmax前向传播中的label，自动工具好像不会传入这个参数。明天需要细究，可能原因如下：
-# 1. 必须要按照官方代码那样，连同loss打包
-# 2. 官方复现中我还有没看到的配置，导致了自动工具没有传入
-# 3. 如果实在搞不定，就手动训练吧（for），不用自动工具了
+    model.train(1, train_dataset, callbacks=[LossMonitor(0.0001,5)],dataset_sink_mode=False)
 
 
 

@@ -5,6 +5,8 @@ import mindspore.ops as ops
 from mindspore import Tensor
 import numpy as np
 
+from resnet import *
+from MyDataset import get_dataset
 # class Asoftmax(nn.Cell):
 #     '''
 #     接收扩维后的数据，输出cos(\theta +m)
@@ -72,5 +74,26 @@ if __name__ == '__main__':
     print(output.shape)
     print("output",output)
     print("output2",output2)
+
+    # image_folder_dataset_dir = "data/CASIA-maxpy-clean"
+    # train_dataset = get_dataset(image_folder_dataset_dir,"train")
+    # train_dataset = train_dataset.batch(64)
+
+    # net = resnet50(13938)
+    # loss_fn = Asoftmax_loss()
+    # loss_fn = SoftmaxCrossEntropyWithLogits(sparse=True)
+    # for d,l in train_dataset:
+    #     output = net(d)
+    #     loss = loss_fn(output,l)
+    #     print(loss)   
+    pass 
+#FIXME: 遇到了问题，loss一开始就为nan。实际上，如果使用随机生成数据输入，不会出现nan，但只要是数据集输入，loss就位nan；
+# 当使用随机生成数据输入：SoftmaxCrossEntropyWithLogits的loss值小于Asoftmax_loss
+# 当使用数据集输入：SoftmaxCrossEntropyWithLogits正常，但Asoftmax_loss输出为nan
+# 猜测是Asoftmax_loss什么地方写错了
+
+# 解决方案如下：
+# 1. 修复Asoftmax_loss中的错误
+# 2. 重载resnet，使得输出值直接接上add_m_at_correctplace，然后使用SoftmaxCrossEntropyWithLogits。放弃写新的loss函数的念想
 
 

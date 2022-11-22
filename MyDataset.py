@@ -11,7 +11,7 @@ def get_dataset(image_folder_dataset_dir,phase,pic_size=[128,128]):
                 vision.RandomCrop(pic_size),
                 # vision.Grayscale(),
                 vision.RandomHorizontalFlip(),
-                vision.Normalize(mean=[0.5],std=[0.5]),
+                vision.Normalize(mean=[0.5,0.5,0.5],std=[0.5,0.5,0.5]),
                 vision.ToTensor()
             ]
         )

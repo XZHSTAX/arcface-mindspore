@@ -3,97 +3,97 @@
 # 3.Refer to https://www.mindspore.cn/search?inputValue=analyze_fail.dat to get more instructions.
 # ===============================================================================
 
-# [No.1] Default_wrapper.7
+# [No.1] Default_wrapper.14
 # In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/loss/loss.py:671/    def construct(self, logits, labels):/
-funcgraph fg_7(
-        %para1 : Tensor(F32)[2, 13938]    # logits
-        , %para2 : Tensor(I32)[2]    # labels
+funcgraph fg_14(
+        %para1 : Tensor(F32)[64, 13938]    # logits
+        , %para2 : Tensor(I32)[64]    # labels
     ) {
 
 #------------------------> 0
-    %1 = FuncGraph::fg_8(%para1, %para2)    #(Tensor(F32)[2, 13938], Tensor(I32)[2])    # fg_8=Default.8 #scope: Default
-#[CNode]11
+    %1 = FuncGraph::fg_15(%para1, %para2)    #(Tensor(F32)[64, 13938], Tensor(I32)[64])    # fg_15=Default.15 #scope: Default
+#[CNode]18
     Primitive::Return{prim_type=1}(%1)    #(Undefined) #scope: Default
-      # In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/loss/loss.py:674/        if self.sparse:/#[CNode]12
+      # In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/loss/loss.py:674/        if self.sparse:/#[CNode]19
 }
 # order:
-#   1: @Default_wrapper.7:[CNode]11{[0]: ValueNode<FuncGraph> Default.8, [1]: logits, [2]: labels}
-#   2: @Default_wrapper.7:[CNode]12{[0]: ValueNode<Primitive> Return, [1]: [CNode]11}
+#   1: @Default_wrapper.14:[CNode]18{[0]: ValueNode<FuncGraph> Default.15, [1]: logits, [2]: labels}
+#   2: @Default_wrapper.14:[CNode]19{[0]: ValueNode<Primitive> Return, [1]: [CNode]18}
 
 
-# [No.2] Default.8
+# [No.2] Default.15
 # In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/loss/loss.py:671/    def construct(self, logits, labels):/
-funcgraph fg_8(
-        %para3 : Tensor(F32)[2, 13938]    # фlogits
-        , %para4 : Tensor(I32)[2]    # labels
+funcgraph fg_15(
+        %para3 : Tensor(F32)[64, 13938]    # фlogits
+        , %para4 : Tensor(I32)[64]    # labels
     ) {
-    %1 : NoneTypeNoShape = DoSignaturePrimitive::S-Prim-_check_is_tensor{prim_type=1}("logits", %para3, "SoftmaxCrossEntropyWithLogits")    #(StringNoShape, Tensor(F32)[2, 13938], StringNoShape) #scope: Default
-      # In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/loss/loss.py:672/        _check_is_tensor('logits', logits, self.cls_name)/#[CNode]13
-    %2 : NoneTypeNoShape = DoSignaturePrimitive::S-Prim-_check_is_tensor{prim_type=1}("labels", %para4, "SoftmaxCrossEntropyWithLogits")    #(StringNoShape, Tensor(I32)[2], StringNoShape) #scope: Default
-      # In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/loss/loss.py:673/        _check_is_tensor('labels', labels, self.cls_name)/#[CNode]14
+    %1 : NoneTypeNoShape = DoSignaturePrimitive::S-Prim-_check_is_tensor{prim_type=1}("logits", %para3, "SoftmaxCrossEntropyWithLogits")    #(StringNoShape, Tensor(F32)[64, 13938], StringNoShape) #scope: Default
+      # In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/loss/loss.py:672/        _check_is_tensor('logits', logits, self.cls_name)/#[CNode]20
+    %2 : NoneTypeNoShape = DoSignaturePrimitive::S-Prim-_check_is_tensor{prim_type=1}("labels", %para4, "SoftmaxCrossEntropyWithLogits")    #(StringNoShape, Tensor(I32)[64], StringNoShape) #scope: Default
+      # In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/loss/loss.py:673/        _check_is_tensor('labels', labels, self.cls_name)/#[CNode]21
     %3 : Tuple[NoneType*2]TupleShape(NoShape, NoShape) = Primitive::MakeTuple{prim_type=1}(%1, %2)    #(NoneTypeNoShape, NoneTypeNoShape) #scope: Default
-#[CNode]15
+#[CNode]22
     %4 : Tuple[NoneType*2]TupleShape(NoShape, NoShape) = Primitive::stop_gradient{prim_type=1}(%3)    #(Tuple[NoneType*2]TupleShape(NoShape, NoShape)) #scope: Default
-#[CNode]16
-    %5 : BoolNoShape = FuncGraph::fg_17(Bool(0))    #(BoolNoShape)    # fg_17=bool_.17 #scope: Default
-      # In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/loss/loss.py:674/        if self.sparse:/#[CNode]18
-    %6 : FuncNoShape = Primitive::Switch{prim_type=1}(%5, FuncGraph::fg_19, FuncGraph::fg_9)    #(BoolNoShape, FuncNoShape, FuncNoShape)    # fg_19=✓Default.19, fg_9=✗Default.9 #scope: Default
-      # In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/loss/loss.py:674/        if self.sparse:/#[CNode]20
+#[CNode]23
+    %5 : BoolNoShape = FuncGraph::fg_24(Bool(0))    #(BoolNoShape)    # fg_24=bool_.24 #scope: Default
+      # In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/loss/loss.py:674/        if self.sparse:/#[CNode]25
+    %6 : FuncNoShape = Primitive::Switch{prim_type=1}(%5, FuncGraph::fg_26, FuncGraph::fg_16)    #(BoolNoShape, FuncNoShape, FuncNoShape)    # fg_26=✓Default.26, fg_16=✗Default.16 #scope: Default
+      # In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/loss/loss.py:674/        if self.sparse:/#[CNode]27
 
 #------------------------> 1
     %7 = %6() #scope: Default
-      # In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/loss/loss.py:674/        if self.sparse:/#[CNode]21
+      # In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/loss/loss.py:674/        if self.sparse:/#[CNode]28
     %8 = Primitive::Depend{prim_type=1}[side_effect_propagate=I64(1)](%7, %4)    #(Undefined, Tuple[NoneType*2]TupleShape(NoShape, NoShape)) #scope: Default
-#[CNode]22
+#[CNode]29
     Primitive::Return{prim_type=1}(%8)    #(Undefined) #scope: Default
-      # In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/loss/loss.py:674/        if self.sparse:/#[CNode]23
+      # In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/loss/loss.py:674/        if self.sparse:/#[CNode]30
 }
 # order:
-#   1: @Default.8:[CNode]13{[0]: ValueNode<DoSignaturePrimitive> S-Prim-_check_is_tensor, [1]: ValueNode<StringImm> logits, [2]: фlogits, [3]: ValueNode<StringImm> SoftmaxCrossEntropyWithLogits}
-#   2: @Default.8:[CNode]14{[0]: ValueNode<DoSignaturePrimitive> S-Prim-_check_is_tensor, [1]: ValueNode<StringImm> labels, [2]: labels, [3]: ValueNode<StringImm> SoftmaxCrossEntropyWithLogits}
-#   3: @Default.8:[CNode]18{[0]: ValueNode<FuncGraph> bool_.17, [1]: ValueNode<BoolImm> false}
-#   4: @Default.8:[CNode]20{[0]: ValueNode<Primitive> Switch, [1]: [CNode]18, [2]: ValueNode<FuncGraph> ✓Default.19, [3]: ValueNode<FuncGraph> ✗Default.9}
-#   5: @Default.8:[CNode]21{[0]: [CNode]20}
-#   6: @Default.8:[CNode]23{[0]: ValueNode<Primitive> Return, [1]: [CNode]22}
+#   1: @Default.15:[CNode]20{[0]: ValueNode<DoSignaturePrimitive> S-Prim-_check_is_tensor, [1]: ValueNode<StringImm> logits, [2]: фlogits, [3]: ValueNode<StringImm> SoftmaxCrossEntropyWithLogits}
+#   2: @Default.15:[CNode]21{[0]: ValueNode<DoSignaturePrimitive> S-Prim-_check_is_tensor, [1]: ValueNode<StringImm> labels, [2]: labels, [3]: ValueNode<StringImm> SoftmaxCrossEntropyWithLogits}
+#   3: @Default.15:[CNode]25{[0]: ValueNode<FuncGraph> bool_.24, [1]: ValueNode<BoolImm> false}
+#   4: @Default.15:[CNode]27{[0]: ValueNode<Primitive> Switch, [1]: [CNode]25, [2]: ValueNode<FuncGraph> ✓Default.26, [3]: ValueNode<FuncGraph> ✗Default.16}
+#   5: @Default.15:[CNode]28{[0]: [CNode]27}
+#   6: @Default.15:[CNode]30{[0]: ValueNode<Primitive> Return, [1]: [CNode]29}
 
 
-# [No.3] ✗Default.9
+# [No.3] ✗Default.16
 # In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/loss/loss.py:674/        if self.sparse:/
-funcgraph fg_9[fg_8](
+funcgraph fg_16[fg_15](
 ) {
 
 #------------------------> 2
-    %1 = FuncGraph::fg_10(%para4)    #(Tensor(I32)[2])    # fg_10=↓Default.10 #scope: Default
-#[CNode]24
+    %1 = FuncGraph::fg_17(%para4)    #(Tensor(I32)[64])    # fg_17=↓Default.17 #scope: Default
+#[CNode]31
     Primitive::Return{prim_type=1}(%1)    #(Undefined) #scope: Default
-      # In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/loss/loss.py:674/        if self.sparse:/#[CNode]25
+      # In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/loss/loss.py:674/        if self.sparse:/#[CNode]32
 }
 # order:
-#   1: @✗Default.9:[CNode]25{[0]: ValueNode<Primitive> Return, [1]: [CNode]24}
-#   2: @✗Default.9:[CNode]24{[0]: ValueNode<FuncGraph> ↓Default.10, [1]: labels}
+#   1: @✗Default.16:[CNode]32{[0]: ValueNode<Primitive> Return, [1]: [CNode]31}
+#   2: @✗Default.16:[CNode]31{[0]: ValueNode<FuncGraph> ↓Default.17, [1]: labels}
 
 
-# [No.4] ↓Default.10
+# [No.4] ↓Default.17
 # In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/loss/loss.py:674/        if self.sparse:/
-funcgraph fg_10[fg_8](
-        %para5 : Tensor(I32)[2]    # фlabels
+funcgraph fg_17[fg_15](
+        %para5 : Tensor(I32)[64]    # фlabels
     ) {
 
 #------------------------> 3
-    %1 = DoSignaturePrimitive::S-Prim-SoftmaxCrossEntropyWithLogits{prim_type=1}(%para3, %para5)    #(Tensor(F32)[2, 13938], Tensor(I32)[2]) #scope: Default
-      # In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/loss/loss.py:679/        x = self.softmax_cross_entropy(logits, labels)[0]/#[CNode]26
+    %1 = DoSignaturePrimitive::S-Prim-SoftmaxCrossEntropyWithLogits{prim_type=1}(%para3, %para5)    #(Tensor(F32)[64, 13938], Tensor(I32)[64]) #scope: Default
+      # In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/loss/loss.py:679/        x = self.softmax_cross_entropy(logits, labels)[0]/#[CNode]33
     %2 = DoSignaturePrimitive::S-Prim-getitem{prim_type=1}(%1, I64(0))    #(Undefined, Undefined) #scope: Default
       # In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/loss/loss.py:679/        x = self.softmax_cross_entropy(logits, labels)[0]/#x
-    %3 = FuncGraph::fg_27(%2)    #(Undefined)    # fg_27=get_loss.27 #scope: Default
-      # In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/loss/loss.py:680/        return self.get_loss(x)/#[CNode]28
+    %3 = FuncGraph::fg_34(%2)    #(Undefined)    # fg_34=get_loss.34 #scope: Default
+      # In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/loss/loss.py:680/        return self.get_loss(x)/#[CNode]35
     Primitive::Return{prim_type=1}(%3)    #(Undefined) #scope: Default
-      # In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/loss/loss.py:680/        return self.get_loss(x)/#[CNode]29
+      # In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/loss/loss.py:680/        return self.get_loss(x)/#[CNode]36
 }
 # order:
-#   1: @↓Default.10:[CNode]26{[0]: ValueNode<DoSignaturePrimitive> S-Prim-SoftmaxCrossEntropyWithLogits, [1]: фlogits, [2]: фlabels}
-#   2: @↓Default.10:x{[0]: ValueNode<DoSignaturePrimitive> S-Prim-getitem, [1]: [CNode]26, [2]: ValueNode<Int64Imm> 0}
-#   3: @↓Default.10:[CNode]28{[0]: ValueNode<FuncGraph> get_loss.27, [1]: x}
-#   4: @↓Default.10:[CNode]29{[0]: ValueNode<Primitive> Return, [1]: [CNode]28}
+#   1: @↓Default.17:[CNode]33{[0]: ValueNode<DoSignaturePrimitive> S-Prim-SoftmaxCrossEntropyWithLogits, [1]: фlogits, [2]: фlabels}
+#   2: @↓Default.17:x{[0]: ValueNode<DoSignaturePrimitive> S-Prim-getitem, [1]: [CNode]33, [2]: ValueNode<Int64Imm> 0}
+#   3: @↓Default.17:[CNode]35{[0]: ValueNode<FuncGraph> get_loss.34, [1]: x}
+#   4: @↓Default.17:[CNode]36{[0]: ValueNode<Primitive> Return, [1]: [CNode]35}
 
 
 #===============================================================================
