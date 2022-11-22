@@ -6,18 +6,19 @@ from mindspore.dataset import vision,transforms
 from mindvision.engine.callback import LossMonitor
 
 from MyDataset import get_dataset
-from ModelArcface import get_ArcFaceModel
+from A_softmax import Asoftmax_loss
+from resnet import *
 
 
 if __name__ == '__main__':
     image_folder_dataset_dir = "data/data_test"
     train_dataset = get_dataset(image_folder_dataset_dir,"train")
-    train_dataset = train_dataset.batch(2)
+    train_dataset = train_dataset.batch(32)
     # for d,l in train_dataset:
-    #     print(l.shape)
+    #     print(d.shape)
 
-    loss = nn.SoftmaxCrossEntropyWithLogits()
-    net = get_ArcFaceModel()
+    net = resnet50(13938)
+    loss = Asoftmax_loss()
     opt = nn.SGD(net.trainable_params(),learning_rate=0.0001)
 
     model = ms.Model(network=net,

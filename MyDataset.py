@@ -3,13 +3,13 @@ import mindspore.dataset as ds
 from mindspore.dataset import vision,transforms
 
 def get_dataset(image_folder_dataset_dir,phase,pic_size=[128,128]):
-    train_dataset = ds.ImageFolderDataset(image_folder_dataset_dir,decode=False,shuffle=True)
+    train_dataset = ds.ImageFolderDataset(image_folder_dataset_dir,decode=True,shuffle=True)
     if phase == "train":
         composed = transforms.Compose(
             [
-                vision.Decode(to_pil=True),
+                # vision.Decode(to_pil=True),
                 vision.RandomCrop(pic_size),
-                vision.Grayscale(),
+                # vision.Grayscale(),
                 vision.RandomHorizontalFlip(),
                 vision.Normalize(mean=[0.5],std=[0.5]),
                 vision.ToTensor()
@@ -18,9 +18,9 @@ def get_dataset(image_folder_dataset_dir,phase,pic_size=[128,128]):
     elif phase == "test":
         composed = transforms.Compose(
             [
-                vision.Decode(to_pil=True),
+                # vision.Decode(to_pil=True),
                 vision.CenterCrop(pic_size),
-                vision.Grayscale(),
+                # vision.Grayscale(),
                 vision.Normalize(mean=[0.5],std=[0.5]),
                 vision.ToTensor()
             ]
