@@ -8,16 +8,16 @@ from mindvision.engine.callback import LossMonitor
 from MyDataset import get_dataset
 from A_softmax import Asoftmax_loss
 from resnet import *
-
+from ArcModel import Arcface
 
 if __name__ == '__main__':
     image_folder_dataset_dir = "data/CASIA-maxpy-clean"
     train_dataset = get_dataset(image_folder_dataset_dir,"train")
-    train_dataset = train_dataset.batch(32)
+    train_dataset = train_dataset.batch(64)
 
-    net = resnet50(13938)
-    # loss_fn = Asoftmax_loss()
-    loss_fn = nn.SoftmaxCrossEntropyWithLogits(sparse=True)
+    net = Arcface(resnet50,512,13938)
+    loss_fn = Asoftmax_loss()
+
     # for d,l in train_dataset:
     #     print(d.shape)
     #     output = net(d)
@@ -32,7 +32,7 @@ if __name__ == '__main__':
                     optimizer=opt,
                     metrics={"Accuracy": nn.Accuracy()})
 
-    model.train(1, train_dataset, callbacks=[LossMonitor(0.0001,5)],dataset_sink_mode=False)
+    model.train(1, train_dataset, callbacks=[LossMonitor(0.0001,25)],dataset_sink_mode=False)
 
 
 

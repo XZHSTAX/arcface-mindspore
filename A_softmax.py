@@ -123,9 +123,7 @@ if __name__ == '__main__':
 # 当使用随机生成数据输入：SoftmaxCrossEntropyWithLogits的loss值小于Asoftmax_loss
 # 当使用数据集输入：SoftmaxCrossEntropyWithLogits正常，但Asoftmax_loss输出为nan
 # 猜测是Asoftmax_loss什么地方写错了
-
-# 解决方案如下：
-# 1. 修复Asoftmax_loss中的错误
-# 2. 重载resnet，使得输出值直接接上add_m_at_correctplace，然后使用SoftmaxCrossEntropyWithLogits。放弃写新的loss函数的念想
-
-
+# DONE: 已经解决loss为nan的问题，主要是对原模型掌握不清楚：
+# 1. resnet 输出的特征为512维度（原文），然后需要使用扩维矩阵把特征变为类别，我忘写了
+# 2. resnet 输出的特征需要归一化，扩维矩阵的权重需要归一化，否则Asoftmax_loss中使用arc cos 会导致没有值的问题（cos的最大值为1，如果输入大于1，arc cos就无法获得真值）
+# 3. 为了解决上述问题，把扩维矩阵和resnet组合成一个模型，写了ArcModel.py,并且归一化了所需的数据

@@ -10,19 +10,27 @@ class Arcface(nn.Cell):
         self.num_feature = num_feature
         self.num_classes = num_classes
 
-        self.weight = Parameter(initializer("normal", (self.num_classes, self.num_feature),ms.float16), name="mp_weight")
+        self.weight = Parameter(initializer("normal", (self.num_feature,self.num_classes),ms.float32), name="mp_weight")
         self.L2Norm = ops.L2Normalize(axis=1)
-        self.linear = ops.MatMul(transpose_b=True)
+        self.linear = ops.MatMul(transpose_b=False)
         self.resnet = backbone_net(self.num_feature)
 
     def construct(self,data):
-        output = self.resnet(data)
+        output = self.resnet(data)                       # output.shape = (batch_size,num_feature)
         norm_output = self.L2Norm(output)
-        norm_weight = self.L2Norm(self.weight)
-        
-        output = self.linear(norm_weight,norm_output)
+        norm_weight = self.L2Norm(self.weight)           # norm_weight.shape = (num_feature,num_classes)
+        output = self.linear(norm_output,norm_weight)    # output.shape = (batch_size,num_classes)
         return output
 
-        
+
+
+if __name__ == "__main__":
+    # 用np.random.random生成一个模拟的图片输入
+    input = Tensor(np.random.random((2,3,128,128)),ms.float32)
+    model = Arcface(resnet50,512,13938)
+    output = model(input)
+    # print(output)
+    print(output.shape)
+
 
 

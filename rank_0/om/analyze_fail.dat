@@ -3,98 +3,316 @@
 # 3.Refer to https://www.mindspore.cn/search?inputValue=analyze_fail.dat to get more instructions.
 # ===============================================================================
 
-# [No.1] Default_wrapper.14
-# In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/loss/loss.py:671/    def construct(self, logits, labels):/
-funcgraph fg_14(
-        %para1 : Tensor(F32)[64, 13938]    # logits
-        , %para2 : Tensor(I32)[64]    # labels
+# [No.1] Default_wrapper.1
+# In file /home/xzh/Code/Python/arcface_mindspore/ArcModel.py:18/    def construct(self,data):/
+funcgraph fg_1(
+        %para1 : Tensor(F32)[2, 3, 128, 128]    # data
+        , %para2 : Ref[Tensor(F16)][13938, 512]    # mp_weight
+        , %para3 : Ref[Tensor(F32)][64, 3, 7, 7]    # resnet.conv1.weight
+        , %para4 : Ref[Tensor(F32)][512]    # resnet.end_point.bias
+        , %para5 : Ref[Tensor(F32)][512, 2048]    # resnet.end_point.weight
+        , %para6 : Ref[Tensor(F32)][64]    # resnet.bn1.gamma
+        , %para7 : Ref[Tensor(F32)][64]    # resnet.bn1.beta
+        , %para8 : Ref[Tensor(F32)][64]    # resnet.bn1.moving_mean
+        , %para9 : Ref[Tensor(F32)][64]    # resnet.bn1.moving_variance
+        , %para10 : Ref[Tensor(F32)][512, 512, 3, 3]    # resnet.layer4.0.conv2.weight
+        , %para11 : Ref[Tensor(F32)][512, 512, 3, 3]    # resnet.layer4.1.conv2.weight
+        , %para12 : Ref[Tensor(F32)][512, 512, 3, 3]    # resnet.layer4.2.conv2.weight
+        , %para13 : Ref[Tensor(F32)][2048, 512, 1, 1]    # resnet.layer4.0.conv3.weight
+        , %para14 : Ref[Tensor(F32)][512, 1024, 1, 1]    # resnet.layer4.0.conv1.weight
+        , %para15 : Ref[Tensor(F32)][2048, 512, 1, 1]    # resnet.layer4.1.conv3.weight
+        , %para16 : Ref[Tensor(F32)][512, 2048, 1, 1]    # resnet.layer4.1.conv1.weight
+        , %para17 : Ref[Tensor(F32)][2048, 512, 1, 1]    # resnet.layer4.2.conv3.weight
+        , %para18 : Ref[Tensor(F32)][512, 2048, 1, 1]    # resnet.layer4.2.conv1.weight
+        , %para19 : Ref[Tensor(F32)][256, 256, 3, 3]    # resnet.layer3.0.conv2.weight
+        , %para20 : Ref[Tensor(F32)][256, 256, 3, 3]    # resnet.layer3.1.conv2.weight
+        , %para21 : Ref[Tensor(F32)][256, 256, 3, 3]    # resnet.layer3.2.conv2.weight
+        , %para22 : Ref[Tensor(F32)][256, 256, 3, 3]    # resnet.layer3.3.conv2.weight
+        , %para23 : Ref[Tensor(F32)][256, 256, 3, 3]    # resnet.layer3.4.conv2.weight
+        , %para24 : Ref[Tensor(F32)][256, 256, 3, 3]    # resnet.layer3.5.conv2.weight
+        , %para25 : Ref[Tensor(F32)][1024, 256, 1, 1]    # resnet.layer3.0.conv3.weight
+        , %para26 : Ref[Tensor(F32)][256, 512, 1, 1]    # resnet.layer3.0.conv1.weight
+        , %para27 : Ref[Tensor(F32)][1024, 256, 1, 1]    # resnet.layer3.1.conv3.weight
+        , %para28 : Ref[Tensor(F32)][256, 1024, 1, 1]    # resnet.layer3.1.conv1.weight
+        , %para29 : Ref[Tensor(F32)][1024, 256, 1, 1]    # resnet.layer3.2.conv3.weight
+        , %para30 : Ref[Tensor(F32)][256, 1024, 1, 1]    # resnet.layer3.2.conv1.weight
+        , %para31 : Ref[Tensor(F32)][1024, 256, 1, 1]    # resnet.layer3.3.conv3.weight
+        , %para32 : Ref[Tensor(F32)][256, 1024, 1, 1]    # resnet.layer3.3.conv1.weight
+        , %para33 : Ref[Tensor(F32)][1024, 256, 1, 1]    # resnet.layer3.4.conv3.weight
+        , %para34 : Ref[Tensor(F32)][256, 1024, 1, 1]    # resnet.layer3.4.conv1.weight
+        , %para35 : Ref[Tensor(F32)][1024, 256, 1, 1]    # resnet.layer3.5.conv3.weight
+        , %para36 : Ref[Tensor(F32)][256, 1024, 1, 1]    # resnet.layer3.5.conv1.weight
+        , %para37 : Ref[Tensor(F32)][128, 128, 3, 3]    # resnet.layer2.0.conv2.weight
+        , %para38 : Ref[Tensor(F32)][128, 128, 3, 3]    # resnet.layer2.1.conv2.weight
+        , %para39 : Ref[Tensor(F32)][128, 128, 3, 3]    # resnet.layer2.2.conv2.weight
+        , %para40 : Ref[Tensor(F32)][128, 128, 3, 3]    # resnet.layer2.3.conv2.weight
+        , %para41 : Ref[Tensor(F32)][512]    # resnet.layer4.0.bn2.gamma
+        , %para42 : Ref[Tensor(F32)][512]    # resnet.layer4.0.bn2.beta
+        , %para43 : Ref[Tensor(F32)][512]    # resnet.layer4.0.bn2.moving_mean
+        , %para44 : Ref[Tensor(F32)][512]    # resnet.layer4.0.bn2.moving_variance
+        , %para45 : Ref[Tensor(F32)][512]    # resnet.layer4.1.bn2.gamma
+        , %para46 : Ref[Tensor(F32)][512]    # resnet.layer4.1.bn2.beta
+        , %para47 : Ref[Tensor(F32)][512]    # resnet.layer4.1.bn2.moving_mean
+        , %para48 : Ref[Tensor(F32)][512]    # resnet.layer4.1.bn2.moving_variance
+        , %para49 : Ref[Tensor(F32)][512]    # resnet.layer4.2.bn2.gamma
+        , %para50 : Ref[Tensor(F32)][512]    # resnet.layer4.2.bn2.beta
+        , %para51 : Ref[Tensor(F32)][512]    # resnet.layer4.2.bn2.moving_mean
+        , %para52 : Ref[Tensor(F32)][512]    # resnet.layer4.2.bn2.moving_variance
+        , %para53 : Ref[Tensor(F32)][512, 128, 1, 1]    # resnet.layer2.0.conv3.weight
+        , %para54 : Ref[Tensor(F32)][128, 256, 1, 1]    # resnet.layer2.0.conv1.weight
+        , %para55 : Ref[Tensor(F32)][512, 128, 1, 1]    # resnet.layer2.1.conv3.weight
+        , %para56 : Ref[Tensor(F32)][128, 512, 1, 1]    # resnet.layer2.1.conv1.weight
+        , %para57 : Ref[Tensor(F32)][512, 128, 1, 1]    # resnet.layer2.2.conv3.weight
+        , %para58 : Ref[Tensor(F32)][128, 512, 1, 1]    # resnet.layer2.2.conv1.weight
+        , %para59 : Ref[Tensor(F32)][512, 128, 1, 1]    # resnet.layer2.3.conv3.weight
+        , %para60 : Ref[Tensor(F32)][128, 512, 1, 1]    # resnet.layer2.3.conv1.weight
+        , %para61 : Ref[Tensor(F32)][64, 64, 3, 3]    # resnet.layer1.0.conv2.weight
+        , %para62 : Ref[Tensor(F32)][64, 64, 3, 3]    # resnet.layer1.1.conv2.weight
+        , %para63 : Ref[Tensor(F32)][64, 64, 3, 3]    # resnet.layer1.2.conv2.weight
+        , %para64 : Ref[Tensor(F32)][2048]    # resnet.layer4.0.bn3.gamma
+        , %para65 : Ref[Tensor(F32)][2048]    # resnet.layer4.0.bn3.beta
+        , %para66 : Ref[Tensor(F32)][2048]    # resnet.layer4.0.bn3.moving_mean
+        , %para67 : Ref[Tensor(F32)][2048]    # resnet.layer4.0.bn3.moving_variance
+        , %para68 : Ref[Tensor(F32)][512]    # resnet.layer4.0.bn1.gamma
+        , %para69 : Ref[Tensor(F32)][512]    # resnet.layer4.0.bn1.beta
+        , %para70 : Ref[Tensor(F32)][512]    # resnet.layer4.0.bn1.moving_mean
+        , %para71 : Ref[Tensor(F32)][512]    # resnet.layer4.0.bn1.moving_variance
+        , %para72 : Ref[Tensor(F32)][2048]    # resnet.layer4.1.bn3.gamma
+        , %para73 : Ref[Tensor(F32)][2048]    # resnet.layer4.1.bn3.beta
+        , %para74 : Ref[Tensor(F32)][2048]    # resnet.layer4.1.bn3.moving_mean
+        , %para75 : Ref[Tensor(F32)][2048]    # resnet.layer4.1.bn3.moving_variance
+        , %para76 : Ref[Tensor(F32)][512]    # resnet.layer4.1.bn1.gamma
+        , %para77 : Ref[Tensor(F32)][512]    # resnet.layer4.1.bn1.beta
+        , %para78 : Ref[Tensor(F32)][512]    # resnet.layer4.1.bn1.moving_mean
+        , %para79 : Ref[Tensor(F32)][512]    # resnet.layer4.1.bn1.moving_variance
+        , %para80 : Ref[Tensor(F32)][2048]    # resnet.layer4.2.bn3.gamma
+        , %para81 : Ref[Tensor(F32)][2048]    # resnet.layer4.2.bn3.beta
+        , %para82 : Ref[Tensor(F32)][2048]    # resnet.layer4.2.bn3.moving_mean
+        , %para83 : Ref[Tensor(F32)][2048]    # resnet.layer4.2.bn3.moving_variance
+        , %para84 : Ref[Tensor(F32)][512]    # resnet.layer4.2.bn1.gamma
+        , %para85 : Ref[Tensor(F32)][512]    # resnet.layer4.2.bn1.beta
+        , %para86 : Ref[Tensor(F32)][512]    # resnet.layer4.2.bn1.moving_mean
+        , %para87 : Ref[Tensor(F32)][512]    # resnet.layer4.2.bn1.moving_variance
+        , %para88 : Ref[Tensor(F32)][256]    # resnet.layer3.0.bn2.gamma
+        , %para89 : Ref[Tensor(F32)][256]    # resnet.layer3.0.bn2.beta
+        , %para90 : Ref[Tensor(F32)][256]    # resnet.layer3.0.bn2.moving_mean
+        , %para91 : Ref[Tensor(F32)][256]    # resnet.layer3.0.bn2.moving_variance
+        , %para92 : Ref[Tensor(F32)][256]    # resnet.layer3.1.bn2.gamma
+        , %para93 : Ref[Tensor(F32)][256]    # resnet.layer3.1.bn2.beta
+        , %para94 : Ref[Tensor(F32)][256]    # resnet.layer3.1.bn2.moving_mean
+        , %para95 : Ref[Tensor(F32)][256]    # resnet.layer3.1.bn2.moving_variance
+        , %para96 : Ref[Tensor(F32)][256]    # resnet.layer3.2.bn2.gamma
+        , %para97 : Ref[Tensor(F32)][256]    # resnet.layer3.2.bn2.beta
+        , %para98 : Ref[Tensor(F32)][256]    # resnet.layer3.2.bn2.moving_mean
+        , %para99 : Ref[Tensor(F32)][256]    # resnet.layer3.2.bn2.moving_variance
+        , %para100 : Ref[Tensor(F32)][256]    # resnet.layer3.3.bn2.gamma
+        , %para101 : Ref[Tensor(F32)][256]    # resnet.layer3.3.bn2.beta
+        , %para102 : Ref[Tensor(F32)][256]    # resnet.layer3.3.bn2.moving_mean
+        , %para103 : Ref[Tensor(F32)][256]    # resnet.layer3.3.bn2.moving_variance
+        , %para104 : Ref[Tensor(F32)][256]    # resnet.layer3.4.bn2.gamma
+        , %para105 : Ref[Tensor(F32)][256]    # resnet.layer3.4.bn2.beta
+        , %para106 : Ref[Tensor(F32)][256]    # resnet.layer3.4.bn2.moving_mean
+        , %para107 : Ref[Tensor(F32)][256]    # resnet.layer3.4.bn2.moving_variance
+        , %para108 : Ref[Tensor(F32)][256]    # resnet.layer3.5.bn2.gamma
+        , %para109 : Ref[Tensor(F32)][256]    # resnet.layer3.5.bn2.beta
+        , %para110 : Ref[Tensor(F32)][256]    # resnet.layer3.5.bn2.moving_mean
+        , %para111 : Ref[Tensor(F32)][256]    # resnet.layer3.5.bn2.moving_variance
+        , %para112 : Ref[Tensor(F32)][256, 64, 1, 1]    # resnet.layer1.0.conv3.weight
+        , %para113 : Ref[Tensor(F32)][64, 64, 1, 1]    # resnet.layer1.0.conv1.weight
+        , %para114 : Ref[Tensor(F32)][256, 64, 1, 1]    # resnet.layer1.1.conv3.weight
+        , %para115 : Ref[Tensor(F32)][64, 256, 1, 1]    # resnet.layer1.1.conv1.weight
+        , %para116 : Ref[Tensor(F32)][256, 64, 1, 1]    # resnet.layer1.2.conv3.weight
+        , %para117 : Ref[Tensor(F32)][64, 256, 1, 1]    # resnet.layer1.2.conv1.weight
+        , %para118 : Ref[Tensor(F32)][1024]    # resnet.layer3.0.bn3.gamma
+        , %para119 : Ref[Tensor(F32)][1024]    # resnet.layer3.0.bn3.beta
+        , %para120 : Ref[Tensor(F32)][1024]    # resnet.layer3.0.bn3.moving_mean
+        , %para121 : Ref[Tensor(F32)][1024]    # resnet.layer3.0.bn3.moving_variance
+        , %para122 : Ref[Tensor(F32)][256]    # resnet.layer3.0.bn1.gamma
+        , %para123 : Ref[Tensor(F32)][256]    # resnet.layer3.0.bn1.beta
+        , %para124 : Ref[Tensor(F32)][256]    # resnet.layer3.0.bn1.moving_mean
+        , %para125 : Ref[Tensor(F32)][256]    # resnet.layer3.0.bn1.moving_variance
+        , %para126 : Ref[Tensor(F32)][1024]    # resnet.layer3.1.bn3.gamma
+        , %para127 : Ref[Tensor(F32)][1024]    # resnet.layer3.1.bn3.beta
+        , %para128 : Ref[Tensor(F32)][1024]    # resnet.layer3.1.bn3.moving_mean
+        , %para129 : Ref[Tensor(F32)][1024]    # resnet.layer3.1.bn3.moving_variance
+        , %para130 : Ref[Tensor(F32)][256]    # resnet.layer3.1.bn1.gamma
+        , %para131 : Ref[Tensor(F32)][256]    # resnet.layer3.1.bn1.beta
+        , %para132 : Ref[Tensor(F32)][256]    # resnet.layer3.1.bn1.moving_mean
+        , %para133 : Ref[Tensor(F32)][256]    # resnet.layer3.1.bn1.moving_variance
+        , %para134 : Ref[Tensor(F32)][1024]    # resnet.layer3.2.bn3.gamma
+        , %para135 : Ref[Tensor(F32)][1024]    # resnet.layer3.2.bn3.beta
+        , %para136 : Ref[Tensor(F32)][1024]    # resnet.layer3.2.bn3.moving_mean
+        , %para137 : Ref[Tensor(F32)][1024]    # resnet.layer3.2.bn3.moving_variance
+        , %para138 : Ref[Tensor(F32)][256]    # resnet.layer3.2.bn1.gamma
+        , %para139 : Ref[Tensor(F32)][256]    # resnet.layer3.2.bn1.beta
+        , %para140 : Ref[Tensor(F32)][256]    # resnet.layer3.2.bn1.moving_mean
+        , %para141 : Ref[Tensor(F32)][256]    # resnet.layer3.2.bn1.moving_variance
+        , %para142 : Ref[Tensor(F32)][1024]    # resnet.layer3.3.bn3.gamma
+        , %para143 : Ref[Tensor(F32)][1024]    # resnet.layer3.3.bn3.beta
+        , %para144 : Ref[Tensor(F32)][1024]    # resnet.layer3.3.bn3.moving_mean
+        , %para145 : Ref[Tensor(F32)][1024]    # resnet.layer3.3.bn3.moving_variance
+        , %para146 : Ref[Tensor(F32)][256]    # resnet.layer3.3.bn1.gamma
+        , %para147 : Ref[Tensor(F32)][256]    # resnet.layer3.3.bn1.beta
+        , %para148 : Ref[Tensor(F32)][256]    # resnet.layer3.3.bn1.moving_mean
+        , %para149 : Ref[Tensor(F32)][256]    # resnet.layer3.3.bn1.moving_variance
+        , %para150 : Ref[Tensor(F32)][1024]    # resnet.layer3.4.bn3.gamma
+        , %para151 : Ref[Tensor(F32)][1024]    # resnet.layer3.4.bn3.beta
+        , %para152 : Ref[Tensor(F32)][1024]    # resnet.layer3.4.bn3.moving_mean
+        , %para153 : Ref[Tensor(F32)][1024]    # resnet.layer3.4.bn3.moving_variance
+        , %para154 : Ref[Tensor(F32)][256]    # resnet.layer3.4.bn1.gamma
+        , %para155 : Ref[Tensor(F32)][256]    # resnet.layer3.4.bn1.beta
+        , %para156 : Ref[Tensor(F32)][256]    # resnet.layer3.4.bn1.moving_mean
+        , %para157 : Ref[Tensor(F32)][256]    # resnet.layer3.4.bn1.moving_variance
+        , %para158 : Ref[Tensor(F32)][1024]    # resnet.layer3.5.bn3.gamma
+        , %para159 : Ref[Tensor(F32)][1024]    # resnet.layer3.5.bn3.beta
+        , %para160 : Ref[Tensor(F32)][1024]    # resnet.layer3.5.bn3.moving_mean
+        , %para161 : Ref[Tensor(F32)][1024]    # resnet.layer3.5.bn3.moving_variance
+        , %para162 : Ref[Tensor(F32)][256]    # resnet.layer3.5.bn1.gamma
+        , %para163 : Ref[Tensor(F32)][256]    # resnet.layer3.5.bn1.beta
+        , %para164 : Ref[Tensor(F32)][256]    # resnet.layer3.5.bn1.moving_mean
+        , %para165 : Ref[Tensor(F32)][256]    # resnet.layer3.5.bn1.moving_variance
+        , %para166 : Ref[Tensor(F32)][128]    # resnet.layer2.0.bn2.gamma
+        , %para167 : Ref[Tensor(F32)][128]    # resnet.layer2.0.bn2.beta
+        , %para168 : Ref[Tensor(F32)][128]    # resnet.layer2.0.bn2.moving_mean
+        , %para169 : Ref[Tensor(F32)][128]    # resnet.layer2.0.bn2.moving_variance
+        , %para170 : Ref[Tensor(F32)][128]    # resnet.layer2.1.bn2.gamma
+        , %para171 : Ref[Tensor(F32)][128]    # resnet.layer2.1.bn2.beta
+        , %para172 : Ref[Tensor(F32)][128]    # resnet.layer2.1.bn2.moving_mean
+        , %para173 : Ref[Tensor(F32)][128]    # resnet.layer2.1.bn2.moving_variance
+        , %para174 : Ref[Tensor(F32)][128]    # resnet.layer2.2.bn2.gamma
+        , %para175 : Ref[Tensor(F32)][128]    # resnet.layer2.2.bn2.beta
+        , %para176 : Ref[Tensor(F32)][128]    # resnet.layer2.2.bn2.moving_mean
+        , %para177 : Ref[Tensor(F32)][128]    # resnet.layer2.2.bn2.moving_variance
+        , %para178 : Ref[Tensor(F32)][128]    # resnet.layer2.3.bn2.gamma
+        , %para179 : Ref[Tensor(F32)][128]    # resnet.layer2.3.bn2.beta
+        , %para180 : Ref[Tensor(F32)][128]    # resnet.layer2.3.bn2.moving_mean
+        , %para181 : Ref[Tensor(F32)][128]    # resnet.layer2.3.bn2.moving_variance
+        , %para182 : Ref[Tensor(F32)][512]    # resnet.layer2.0.bn3.gamma
+        , %para183 : Ref[Tensor(F32)][512]    # resnet.layer2.0.bn3.beta
+        , %para184 : Ref[Tensor(F32)][512]    # resnet.layer2.0.bn3.moving_mean
+        , %para185 : Ref[Tensor(F32)][512]    # resnet.layer2.0.bn3.moving_variance
+        , %para186 : Ref[Tensor(F32)][128]    # resnet.layer2.0.bn1.gamma
+        , %para187 : Ref[Tensor(F32)][128]    # resnet.layer2.0.bn1.beta
+        , %para188 : Ref[Tensor(F32)][128]    # resnet.layer2.0.bn1.moving_mean
+        , %para189 : Ref[Tensor(F32)][128]    # resnet.layer2.0.bn1.moving_variance
+        , %para190 : Ref[Tensor(F32)][512]    # resnet.layer2.1.bn3.gamma
+        , %para191 : Ref[Tensor(F32)][512]    # resnet.layer2.1.bn3.beta
+        , %para192 : Ref[Tensor(F32)][512]    # resnet.layer2.1.bn3.moving_mean
+        , %para193 : Ref[Tensor(F32)][512]    # resnet.layer2.1.bn3.moving_variance
+        , %para194 : Ref[Tensor(F32)][128]    # resnet.layer2.1.bn1.gamma
+        , %para195 : Ref[Tensor(F32)][128]    # resnet.layer2.1.bn1.beta
+        , %para196 : Ref[Tensor(F32)][128]    # resnet.layer2.1.bn1.moving_mean
+        , %para197 : Ref[Tensor(F32)][128]    # resnet.layer2.1.bn1.moving_variance
+        , %para198 : Ref[Tensor(F32)][512]    # resnet.layer2.2.bn3.gamma
+        , %para199 : Ref[Tensor(F32)][512]    # resnet.layer2.2.bn3.beta
+        , %para200 : Ref[Tensor(F32)][512]    # resnet.layer2.2.bn3.moving_mean
+        , %para201 : Ref[Tensor(F32)][512]    # resnet.layer2.2.bn3.moving_variance
+        , %para202 : Ref[Tensor(F32)][128]    # resnet.layer2.2.bn1.gamma
+        , %para203 : Ref[Tensor(F32)][128]    # resnet.layer2.2.bn1.beta
+        , %para204 : Ref[Tensor(F32)][128]    # resnet.layer2.2.bn1.moving_mean
+        , %para205 : Ref[Tensor(F32)][128]    # resnet.layer2.2.bn1.moving_variance
+        , %para206 : Ref[Tensor(F32)][512]    # resnet.layer2.3.bn3.gamma
+        , %para207 : Ref[Tensor(F32)][512]    # resnet.layer2.3.bn3.beta
+        , %para208 : Ref[Tensor(F32)][512]    # resnet.layer2.3.bn3.moving_mean
+        , %para209 : Ref[Tensor(F32)][512]    # resnet.layer2.3.bn3.moving_variance
+        , %para210 : Ref[Tensor(F32)][128]    # resnet.layer2.3.bn1.gamma
+        , %para211 : Ref[Tensor(F32)][128]    # resnet.layer2.3.bn1.beta
+        , %para212 : Ref[Tensor(F32)][128]    # resnet.layer2.3.bn1.moving_mean
+        , %para213 : Ref[Tensor(F32)][128]    # resnet.layer2.3.bn1.moving_variance
+        , %para214 : Ref[Tensor(F32)][64]    # resnet.layer1.0.bn2.gamma
+        , %para215 : Ref[Tensor(F32)][64]    # resnet.layer1.0.bn2.beta
+        , %para216 : Ref[Tensor(F32)][64]    # resnet.layer1.0.bn2.moving_mean
+        , %para217 : Ref[Tensor(F32)][64]    # resnet.layer1.0.bn2.moving_variance
+        , %para218 : Ref[Tensor(F32)][64]    # resnet.layer1.1.bn2.gamma
+        , %para219 : Ref[Tensor(F32)][64]    # resnet.layer1.1.bn2.beta
+        , %para220 : Ref[Tensor(F32)][64]    # resnet.layer1.1.bn2.moving_mean
+        , %para221 : Ref[Tensor(F32)][64]    # resnet.layer1.1.bn2.moving_variance
+        , %para222 : Ref[Tensor(F32)][64]    # resnet.layer1.2.bn2.gamma
+        , %para223 : Ref[Tensor(F32)][64]    # resnet.layer1.2.bn2.beta
+        , %para224 : Ref[Tensor(F32)][64]    # resnet.layer1.2.bn2.moving_mean
+        , %para225 : Ref[Tensor(F32)][64]    # resnet.layer1.2.bn2.moving_variance
+        , %para226 : Ref[Tensor(F32)][256]    # resnet.layer1.0.bn3.gamma
+        , %para227 : Ref[Tensor(F32)][256]    # resnet.layer1.0.bn3.beta
+        , %para228 : Ref[Tensor(F32)][256]    # resnet.layer1.0.bn3.moving_mean
+        , %para229 : Ref[Tensor(F32)][256]    # resnet.layer1.0.bn3.moving_variance
+        , %para230 : Ref[Tensor(F32)][64]    # resnet.layer1.0.bn1.gamma
+        , %para231 : Ref[Tensor(F32)][64]    # resnet.layer1.0.bn1.beta
+        , %para232 : Ref[Tensor(F32)][64]    # resnet.layer1.0.bn1.moving_mean
+        , %para233 : Ref[Tensor(F32)][64]    # resnet.layer1.0.bn1.moving_variance
+        , %para234 : Ref[Tensor(F32)][256]    # resnet.layer1.1.bn3.gamma
+        , %para235 : Ref[Tensor(F32)][256]    # resnet.layer1.1.bn3.beta
+        , %para236 : Ref[Tensor(F32)][256]    # resnet.layer1.1.bn3.moving_mean
+        , %para237 : Ref[Tensor(F32)][256]    # resnet.layer1.1.bn3.moving_variance
+        , %para238 : Ref[Tensor(F32)][64]    # resnet.layer1.1.bn1.gamma
+        , %para239 : Ref[Tensor(F32)][64]    # resnet.layer1.1.bn1.beta
+        , %para240 : Ref[Tensor(F32)][64]    # resnet.layer1.1.bn1.moving_mean
+        , %para241 : Ref[Tensor(F32)][64]    # resnet.layer1.1.bn1.moving_variance
+        , %para242 : Ref[Tensor(F32)][256]    # resnet.layer1.2.bn3.gamma
+        , %para243 : Ref[Tensor(F32)][256]    # resnet.layer1.2.bn3.beta
+        , %para244 : Ref[Tensor(F32)][256]    # resnet.layer1.2.bn3.moving_mean
+        , %para245 : Ref[Tensor(F32)][256]    # resnet.layer1.2.bn3.moving_variance
+        , %para246 : Ref[Tensor(F32)][64]    # resnet.layer1.2.bn1.gamma
+        , %para247 : Ref[Tensor(F32)][64]    # resnet.layer1.2.bn1.beta
+        , %para248 : Ref[Tensor(F32)][64]    # resnet.layer1.2.bn1.moving_mean
+        , %para249 : Ref[Tensor(F32)][64]    # resnet.layer1.2.bn1.moving_variance
+        , %para250 : Ref[Tensor(F32)][2048, 1024, 1, 1]    # resnet.layer4.0.down_sample_layer.0.weight
+        , %para251 : Ref[Tensor(F32)][1024, 512, 1, 1]    # resnet.layer3.0.down_sample_layer.0.weight
+        , %para252 : Ref[Tensor(F32)][512, 256, 1, 1]    # resnet.layer2.0.down_sample_layer.0.weight
+        , %para253 : Ref[Tensor(F32)][256, 64, 1, 1]    # resnet.layer1.0.down_sample_layer.0.weight
+        , %para254 : Ref[Tensor(F32)][2048]    # resnet.layer4.0.down_sample_layer.1.gamma
+        , %para255 : Ref[Tensor(F32)][2048]    # resnet.layer4.0.down_sample_layer.1.beta
+        , %para256 : Ref[Tensor(F32)][2048]    # resnet.layer4.0.down_sample_layer.1.moving_mean
+        , %para257 : Ref[Tensor(F32)][2048]    # resnet.layer4.0.down_sample_layer.1.moving_variance
+        , %para258 : Ref[Tensor(F32)][1024]    # resnet.layer3.0.down_sample_layer.1.gamma
+        , %para259 : Ref[Tensor(F32)][1024]    # resnet.layer3.0.down_sample_layer.1.beta
+        , %para260 : Ref[Tensor(F32)][1024]    # resnet.layer3.0.down_sample_layer.1.moving_mean
+        , %para261 : Ref[Tensor(F32)][1024]    # resnet.layer3.0.down_sample_layer.1.moving_variance
+        , %para262 : Ref[Tensor(F32)][512]    # resnet.layer2.0.down_sample_layer.1.gamma
+        , %para263 : Ref[Tensor(F32)][512]    # resnet.layer2.0.down_sample_layer.1.beta
+        , %para264 : Ref[Tensor(F32)][512]    # resnet.layer2.0.down_sample_layer.1.moving_mean
+        , %para265 : Ref[Tensor(F32)][512]    # resnet.layer2.0.down_sample_layer.1.moving_variance
+        , %para266 : Ref[Tensor(F32)][256]    # resnet.layer1.0.down_sample_layer.1.gamma
+        , %para267 : Ref[Tensor(F32)][256]    # resnet.layer1.0.down_sample_layer.1.beta
+        , %para268 : Ref[Tensor(F32)][256]    # resnet.layer1.0.down_sample_layer.1.moving_mean
+        , %para269 : Ref[Tensor(F32)][256]    # resnet.layer1.0.down_sample_layer.1.moving_variance
     ) {
 
 #------------------------> 0
-    %1 = FuncGraph::fg_15(%para1, %para2)    #(Tensor(F32)[64, 13938], Tensor(I32)[64])    # fg_15=Default.15 #scope: Default
-#[CNode]18
+    %1 = FuncGraph::fg_13(%para1)    #(Tensor(F32)[2, 3, 128, 128])    # fg_13=Default.13 #scope: Default
+#[CNode]14
     Primitive::Return{prim_type=1}(%1)    #(Undefined) #scope: Default
-      # In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/loss/loss.py:674/        if self.sparse:/#[CNode]19
+      # In file /home/xzh/Code/Python/arcface_mindspore/ArcModel.py:24/        return output/#[CNode]15
 }
 # order:
-#   1: @Default_wrapper.14:[CNode]18{[0]: ValueNode<FuncGraph> Default.15, [1]: logits, [2]: labels}
-#   2: @Default_wrapper.14:[CNode]19{[0]: ValueNode<Primitive> Return, [1]: [CNode]18}
+#   1: @Default_wrapper.1:[CNode]14{[0]: ValueNode<FuncGraph> Default.13, [1]: data}
+#   2: @Default_wrapper.1:[CNode]15{[0]: ValueNode<Primitive> Return, [1]: [CNode]14}
 
 
-# [No.2] Default.15
-# In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/loss/loss.py:671/    def construct(self, logits, labels):/
-funcgraph fg_15(
-        %para3 : Tensor(F32)[64, 13938]    # фlogits
-        , %para4 : Tensor(I32)[64]    # labels
+# [No.2] Default.13
+# In file /home/xzh/Code/Python/arcface_mindspore/ArcModel.py:18/    def construct(self,data):/
+funcgraph fg_13[fg_1](
+        %para270 : Tensor(F32)[2, 3, 128, 128]    # data
     ) {
-    %1 : NoneTypeNoShape = DoSignaturePrimitive::S-Prim-_check_is_tensor{prim_type=1}("logits", %para3, "SoftmaxCrossEntropyWithLogits")    #(StringNoShape, Tensor(F32)[64, 13938], StringNoShape) #scope: Default
-      # In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/loss/loss.py:672/        _check_is_tensor('logits', logits, self.cls_name)/#[CNode]20
-    %2 : NoneTypeNoShape = DoSignaturePrimitive::S-Prim-_check_is_tensor{prim_type=1}("labels", %para4, "SoftmaxCrossEntropyWithLogits")    #(StringNoShape, Tensor(I32)[64], StringNoShape) #scope: Default
-      # In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/loss/loss.py:673/        _check_is_tensor('labels', labels, self.cls_name)/#[CNode]21
-    %3 : Tuple[NoneType*2]TupleShape(NoShape, NoShape) = Primitive::MakeTuple{prim_type=1}(%1, %2)    #(NoneTypeNoShape, NoneTypeNoShape) #scope: Default
-#[CNode]22
-    %4 : Tuple[NoneType*2]TupleShape(NoShape, NoShape) = Primitive::stop_gradient{prim_type=1}(%3)    #(Tuple[NoneType*2]TupleShape(NoShape, NoShape)) #scope: Default
-#[CNode]23
-    %5 : BoolNoShape = FuncGraph::fg_24(Bool(0))    #(BoolNoShape)    # fg_24=bool_.24 #scope: Default
-      # In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/loss/loss.py:674/        if self.sparse:/#[CNode]25
-    %6 : FuncNoShape = Primitive::Switch{prim_type=1}(%5, FuncGraph::fg_26, FuncGraph::fg_16)    #(BoolNoShape, FuncNoShape, FuncNoShape)    # fg_26=✓Default.26, fg_16=✗Default.16 #scope: Default
-      # In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/loss/loss.py:674/        if self.sparse:/#[CNode]27
+    %1 : Tensor(F16)[13938, 512] = DoSignaturePrimitive::S-Prim-L2Normalize{prim_type=1}[axis=[I64(1)], epsilon=F32(0.0001)](%para2)    #(Ref[Tensor(F16)][13938, 512]) #scope: Default
+      # In file /home/xzh/Code/Python/arcface_mindspore/ArcModel.py:21/        norm_weight = self.L2Norm(self.weight)/#norm_weight
+    %2 : Tensor(F32)[2, 512] = FuncGraph::fg_16(%para270)    #(Tensor(F32)[2, 3, 128, 128])    # fg_16=ResNet.16 #scope: Default
+      # In file /home/xzh/Code/Python/arcface_mindspore/ArcModel.py:19/        output = self.resnet(data)/#output
+    %3 : Tensor(F32)[2, 512] = DoSignaturePrimitive::S-Prim-L2Normalize{prim_type=1}[axis=[I64(1)], epsilon=F32(0.0001)](%2)    #(Tensor(F32)[2, 512]) #scope: Default
+      # In file /home/xzh/Code/Python/arcface_mindspore/ArcModel.py:20/        norm_output = self.L2Norm(output)/#norm_output
 
 #------------------------> 1
-    %7 = %6() #scope: Default
-      # In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/loss/loss.py:674/        if self.sparse:/#[CNode]28
-    %8 = Primitive::Depend{prim_type=1}[side_effect_propagate=I64(1)](%7, %4)    #(Undefined, Tuple[NoneType*2]TupleShape(NoShape, NoShape)) #scope: Default
-#[CNode]29
-    Primitive::Return{prim_type=1}(%8)    #(Undefined) #scope: Default
-      # In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/loss/loss.py:674/        if self.sparse:/#[CNode]30
+    %4 = DoSignaturePrimitive::S-Prim-MatMul{prim_type=1}[output_names=["output"], transpose_a=Bool(0), input_names=["x1", "x2"], transpose_x2=Bool(1), transpose_x1=Bool(0), transpose_b=Bool(1)](%1, %3)    #(Tensor(F16)[13938, 512], Tensor(F32)[2, 512]) #scope: Default
+      # In file /home/xzh/Code/Python/arcface_mindspore/ArcModel.py:23/        output = self.linear(norm_weight,norm_output)/#output
+    Primitive::Return{prim_type=1}(%4)    #(Undefined) #scope: Default
+      # In file /home/xzh/Code/Python/arcface_mindspore/ArcModel.py:24/        return output/#[CNode]17
 }
 # order:
-#   1: @Default.15:[CNode]20{[0]: ValueNode<DoSignaturePrimitive> S-Prim-_check_is_tensor, [1]: ValueNode<StringImm> logits, [2]: фlogits, [3]: ValueNode<StringImm> SoftmaxCrossEntropyWithLogits}
-#   2: @Default.15:[CNode]21{[0]: ValueNode<DoSignaturePrimitive> S-Prim-_check_is_tensor, [1]: ValueNode<StringImm> labels, [2]: labels, [3]: ValueNode<StringImm> SoftmaxCrossEntropyWithLogits}
-#   3: @Default.15:[CNode]25{[0]: ValueNode<FuncGraph> bool_.24, [1]: ValueNode<BoolImm> false}
-#   4: @Default.15:[CNode]27{[0]: ValueNode<Primitive> Switch, [1]: [CNode]25, [2]: ValueNode<FuncGraph> ✓Default.26, [3]: ValueNode<FuncGraph> ✗Default.16}
-#   5: @Default.15:[CNode]28{[0]: [CNode]27}
-#   6: @Default.15:[CNode]30{[0]: ValueNode<Primitive> Return, [1]: [CNode]29}
-
-
-# [No.3] ✗Default.16
-# In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/loss/loss.py:674/        if self.sparse:/
-funcgraph fg_16[fg_15](
-) {
-
-#------------------------> 2
-    %1 = FuncGraph::fg_17(%para4)    #(Tensor(I32)[64])    # fg_17=↓Default.17 #scope: Default
-#[CNode]31
-    Primitive::Return{prim_type=1}(%1)    #(Undefined) #scope: Default
-      # In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/loss/loss.py:674/        if self.sparse:/#[CNode]32
-}
-# order:
-#   1: @✗Default.16:[CNode]32{[0]: ValueNode<Primitive> Return, [1]: [CNode]31}
-#   2: @✗Default.16:[CNode]31{[0]: ValueNode<FuncGraph> ↓Default.17, [1]: labels}
-
-
-# [No.4] ↓Default.17
-# In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/loss/loss.py:674/        if self.sparse:/
-funcgraph fg_17[fg_15](
-        %para5 : Tensor(I32)[64]    # фlabels
-    ) {
-
-#------------------------> 3
-    %1 = DoSignaturePrimitive::S-Prim-SoftmaxCrossEntropyWithLogits{prim_type=1}(%para3, %para5)    #(Tensor(F32)[64, 13938], Tensor(I32)[64]) #scope: Default
-      # In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/loss/loss.py:679/        x = self.softmax_cross_entropy(logits, labels)[0]/#[CNode]33
-    %2 = DoSignaturePrimitive::S-Prim-getitem{prim_type=1}(%1, I64(0))    #(Undefined, Undefined) #scope: Default
-      # In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/loss/loss.py:679/        x = self.softmax_cross_entropy(logits, labels)[0]/#x
-    %3 = FuncGraph::fg_34(%2)    #(Undefined)    # fg_34=get_loss.34 #scope: Default
-      # In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/loss/loss.py:680/        return self.get_loss(x)/#[CNode]35
-    Primitive::Return{prim_type=1}(%3)    #(Undefined) #scope: Default
-      # In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/loss/loss.py:680/        return self.get_loss(x)/#[CNode]36
-}
-# order:
-#   1: @↓Default.17:[CNode]33{[0]: ValueNode<DoSignaturePrimitive> S-Prim-SoftmaxCrossEntropyWithLogits, [1]: фlogits, [2]: фlabels}
-#   2: @↓Default.17:x{[0]: ValueNode<DoSignaturePrimitive> S-Prim-getitem, [1]: [CNode]33, [2]: ValueNode<Int64Imm> 0}
-#   3: @↓Default.17:[CNode]35{[0]: ValueNode<FuncGraph> get_loss.34, [1]: x}
-#   4: @↓Default.17:[CNode]36{[0]: ValueNode<Primitive> Return, [1]: [CNode]35}
+#   1: @Default.13:output{[0]: ValueNode<FuncGraph> ResNet.16, [1]: data}
+#   2: @Default.13:norm_output{[0]: ValueNode<DoSignaturePrimitive> S-Prim-L2Normalize, [1]: output}
+#   3: @Default.13:norm_weight{[0]: ValueNode<DoSignaturePrimitive> S-Prim-L2Normalize, [1]: mp_weight}
+#   4: @Default.13:output{[0]: ValueNode<DoSignaturePrimitive> S-Prim-MatMul, [1]: norm_weight, [2]: norm_output}
+#   5: @Default.13:[CNode]17{[0]: ValueNode<Primitive> Return, [1]: output}
 
 
 #===============================================================================
-# num of function graphs in stack: 4/5 (Ignored 1 internal frames).
+# num of function graphs in stack: 2/3 (Ignored 1 internal frames).
