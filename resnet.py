@@ -629,6 +629,6 @@ def resnet152(class_num=1001):
 
 if __name__ == '__main__':
     input = Tensor(np.random.random((2,3,128,128)),ms.float32)
-    model = resnet50(13938)
+    model = resnet50(512)
     output = model(input)
     print(output.shape)
