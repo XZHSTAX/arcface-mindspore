@@ -1,9 +1,9 @@
 import mindspore as ms
 import mindspore.dataset as ds
 from mindspore.dataset import vision,transforms
-
-def get_dataset(image_folder_dataset_dir,phase,pic_size=[128,128]):
-    train_dataset = ds.ImageFolderDataset(image_folder_dataset_dir,decode=True,shuffle=True)
+import cv2
+def get_dataset(image_folder_dataset_dir,phase,pic_size=[128,128],shuffle=True):
+    train_dataset = ds.ImageFolderDataset(image_folder_dataset_dir,decode=True,shuffle=shuffle)
     if phase == "train":
         composed = transforms.Compose(
             [
@@ -21,7 +21,7 @@ def get_dataset(image_folder_dataset_dir,phase,pic_size=[128,128]):
                 # vision.Decode(to_pil=True),
                 vision.CenterCrop(pic_size),
                 # vision.Grayscale(),
-                vision.Normalize(mean=[0.5],std=[0.5]),
+                vision.Normalize(mean=[0.5,0.5,0.5],std=[0.5,0.5,0.5]),
                 vision.ToTensor()
             ]
         )        
@@ -34,7 +34,9 @@ if __name__ == '__main__':
     pic_size = [128,128]
     # image_folder_dataset_dir = "data/CASIA-maxpy-clean"
     image_folder_dataset_dir = "data/data_test"
-    my_dataset =  get_dataset(image_folder_dataset_dir,"train",pic_size=pic_size)
-    
+    my_dataset =  get_dataset(image_folder_dataset_dir,"train",pic_size=pic_size,shuffle=False)
+    # image = cv2.imread("data/data_test/0000045/001.jpg", 1)
+    # image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+    # image = image.transpose((2, 0, 1))
     for d,l in my_dataset:
         print(d.shape,l)

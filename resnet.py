@@ -493,7 +493,6 @@ class ResNet(nn.Cell):
 
         out = self.mean(c5, (2, 3))
         out = self.flatten(out)
-        #FIXME: 官方源码中，Resnet的最后自带一个全连接层，这确实方便了训练过程中代码的书写，但后续推理时，需要用到全连接层前卷积层的输出可就麻烦了，这里需要加一个判断语句，在推理时跳过全连接，直接返回卷积结果。
         out = self.end_point(out)
 
         return out

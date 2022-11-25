@@ -4,10 +4,10 @@
 # ===============================================================================
 
 # [No.1] Default_wrapper.1
-# In file /home/xzh/Code/Python/arcface_mindspore/ArcModel.py:18/    def construct(self,data):/
+# In file /home/xzh/Code/Python/arcface_mindspore/ArcModel.py:22/    def construct(self,data):/
 funcgraph fg_1(
-        %para1 : Tensor(F32)[2, 3, 128, 128]    # data
-        , %para2 : Ref[Tensor(F16)][13938, 512]    # mp_weight
+        %para1 : Tensor(F32)[64, 6, 128, 128]    # data
+        , %para2 : Ref[Tensor(F32)][512, 13938]    # mp_weight
         , %para3 : Ref[Tensor(F32)][64, 3, 7, 7]    # resnet.conv1.weight
         , %para4 : Ref[Tensor(F32)][512]    # resnet.end_point.bias
         , %para5 : Ref[Tensor(F32)][512, 2048]    # resnet.end_point.weight
@@ -278,41 +278,144 @@ funcgraph fg_1(
     ) {
 
 #------------------------> 0
-    %1 = FuncGraph::fg_13(%para1)    #(Tensor(F32)[2, 3, 128, 128])    # fg_13=Default.13 #scope: Default
-#[CNode]14
+    %1 = FuncGraph::fg_2(%para1)    #(Tensor(F32)[64, 6, 128, 128])    # fg_2=Default.2 #scope: Default
+#[CNode]8
     Primitive::Return{prim_type=1}(%1)    #(Undefined) #scope: Default
-      # In file /home/xzh/Code/Python/arcface_mindspore/ArcModel.py:24/        return output/#[CNode]15
+      # In file /home/xzh/Code/Python/arcface_mindspore/ArcModel.py:25/        if self.test: return output/#[CNode]9
 }
 # order:
-#   1: @Default_wrapper.1:[CNode]14{[0]: ValueNode<FuncGraph> Default.13, [1]: data}
-#   2: @Default_wrapper.1:[CNode]15{[0]: ValueNode<Primitive> Return, [1]: [CNode]14}
+#   1: @Default_wrapper.1:[CNode]8{[0]: ValueNode<FuncGraph> Default.2, [1]: data}
+#   2: @Default_wrapper.1:[CNode]9{[0]: ValueNode<Primitive> Return, [1]: [CNode]8}
 
 
-# [No.2] Default.13
-# In file /home/xzh/Code/Python/arcface_mindspore/ArcModel.py:18/    def construct(self,data):/
-funcgraph fg_13[fg_1](
-        %para270 : Tensor(F32)[2, 3, 128, 128]    # data
+# [No.2] Default.2
+# In file /home/xzh/Code/Python/arcface_mindspore/ArcModel.py:22/    def construct(self,data):/
+funcgraph fg_2[fg_1](
+        %para270 : Tensor(F32)[64, 6, 128, 128]    # data
     ) {
-    %1 : Tensor(F16)[13938, 512] = DoSignaturePrimitive::S-Prim-L2Normalize{prim_type=1}[axis=[I64(1)], epsilon=F32(0.0001)](%para2)    #(Ref[Tensor(F16)][13938, 512]) #scope: Default
-      # In file /home/xzh/Code/Python/arcface_mindspore/ArcModel.py:21/        norm_weight = self.L2Norm(self.weight)/#norm_weight
-    %2 : Tensor(F32)[2, 512] = FuncGraph::fg_16(%para270)    #(Tensor(F32)[2, 3, 128, 128])    # fg_16=ResNet.16 #scope: Default
-      # In file /home/xzh/Code/Python/arcface_mindspore/ArcModel.py:19/        output = self.resnet(data)/#output
-    %3 : Tensor(F32)[2, 512] = DoSignaturePrimitive::S-Prim-L2Normalize{prim_type=1}[axis=[I64(1)], epsilon=F32(0.0001)](%2)    #(Tensor(F32)[2, 512]) #scope: Default
-      # In file /home/xzh/Code/Python/arcface_mindspore/ArcModel.py:20/        norm_output = self.L2Norm(output)/#norm_output
+    %1 : BoolNoShape = FuncGraph::fg_10(Bool(1))    #(BoolNoShape)    # fg_10=bool_.10 #scope: Default
+      # In file /home/xzh/Code/Python/arcface_mindspore/ArcModel.py:25/        if self.test: return output/#[CNode]11
+    %2 : FuncNoShape = Primitive::Switch{prim_type=1}(%1, FuncGraph::fg_3, FuncGraph::fg_12)    #(BoolNoShape, FuncNoShape, FuncNoShape)    # fg_3=✓Default.3, fg_12=✗Default.12 #scope: Default
+      # In file /home/xzh/Code/Python/arcface_mindspore/ArcModel.py:25/        if self.test: return output/#[CNode]13
 
 #------------------------> 1
-    %4 = DoSignaturePrimitive::S-Prim-MatMul{prim_type=1}[output_names=["output"], transpose_a=Bool(0), input_names=["x1", "x2"], transpose_x2=Bool(1), transpose_x1=Bool(0), transpose_b=Bool(1)](%1, %3)    #(Tensor(F16)[13938, 512], Tensor(F32)[2, 512]) #scope: Default
-      # In file /home/xzh/Code/Python/arcface_mindspore/ArcModel.py:23/        output = self.linear(norm_weight,norm_output)/#output
-    Primitive::Return{prim_type=1}(%4)    #(Undefined) #scope: Default
-      # In file /home/xzh/Code/Python/arcface_mindspore/ArcModel.py:24/        return output/#[CNode]17
+    %3 = %2() #scope: Default
+      # In file /home/xzh/Code/Python/arcface_mindspore/ArcModel.py:25/        if self.test: return output/#[CNode]14
+    Primitive::Return{prim_type=1}(%3)    #(Undefined) #scope: Default
+      # In file /home/xzh/Code/Python/arcface_mindspore/ArcModel.py:25/        if self.test: return output/#[CNode]15
 }
 # order:
-#   1: @Default.13:output{[0]: ValueNode<FuncGraph> ResNet.16, [1]: data}
-#   2: @Default.13:norm_output{[0]: ValueNode<DoSignaturePrimitive> S-Prim-L2Normalize, [1]: output}
-#   3: @Default.13:norm_weight{[0]: ValueNode<DoSignaturePrimitive> S-Prim-L2Normalize, [1]: mp_weight}
-#   4: @Default.13:output{[0]: ValueNode<DoSignaturePrimitive> S-Prim-MatMul, [1]: norm_weight, [2]: norm_output}
-#   5: @Default.13:[CNode]17{[0]: ValueNode<Primitive> Return, [1]: output}
+#   1: @Default.2:output{[0]: ValueNode<FuncGraph> ResNet.4, [1]: data}
+#   2: @Default.2:[CNode]11{[0]: ValueNode<FuncGraph> bool_.10, [1]: ValueNode<BoolImm> true}
+#   3: @Default.2:[CNode]13{[0]: ValueNode<Primitive> Switch, [1]: [CNode]11, [2]: ValueNode<FuncGraph> ✓Default.3, [3]: ValueNode<FuncGraph> ✗Default.12}
+#   4: @Default.2:[CNode]14{[0]: [CNode]13}
+#   5: @Default.2:[CNode]15{[0]: ValueNode<Primitive> Return, [1]: [CNode]14}
+
+
+# [No.3] ✓Default.3
+# In file /home/xzh/Code/Python/arcface_mindspore/ArcModel.py:25/        if self.test: return output/
+funcgraph fg_3[fg_2](
+) {
+
+#------------------------> 2
+    %1 = $(Default.2):FuncGraph::fg_4(%para270)    #(Tensor(F32)[64, 6, 128, 128])    # fg_4=ResNet.4 #scope: Default
+      # In file /home/xzh/Code/Python/arcface_mindspore/ArcModel.py:24/        output = self.resnet(data)                       # output.shape = (batch_size,num_feature)/#output
+    Primitive::Return{prim_type=1}(%1)    #(Undefined) #scope: Default
+      # In file /home/xzh/Code/Python/arcface_mindspore/ArcModel.py:25/        if self.test: return output/#[CNode]16
+}
+# order:
+#   1: @✓Default.3:[CNode]16{[0]: ValueNode<Primitive> Return, [1]: output}
+
+
+# [No.4] ResNet.4
+# In file /home/xzh/Code/Python/arcface_mindspore/resnet.py:472/    def construct(self, x):/
+funcgraph fg_4[fg_1](
+        %para271 : Tensor(F32)[64, 6, 128, 128]    # x
+    ) {
+    %1 : BoolNoShape = FuncGraph::fg_10(Bool(0))    #(BoolNoShape)    # fg_10=bool_.10 #scope: Default/resnet-ResNet
+      # In file /home/xzh/Code/Python/arcface_mindspore/resnet.py:473/        if self.use_se:/#[CNode]17
+    %2 : FuncNoShape = Primitive::Switch{prim_type=1}(%1, FuncGraph::fg_18, FuncGraph::fg_5)    #(BoolNoShape, FuncNoShape, FuncNoShape)    # fg_18=✓ResNet.18, fg_5=✗ResNet.5 #scope: Default/resnet-ResNet
+      # In file /home/xzh/Code/Python/arcface_mindspore/resnet.py:473/        if self.use_se:/#[CNode]19
+
+#------------------------> 3
+    %3 = %2() #scope: Default/resnet-ResNet
+      # In file /home/xzh/Code/Python/arcface_mindspore/resnet.py:473/        if self.use_se:/#[CNode]20
+    %4 = FuncGraph::fg_21(%3)    #(Undefined)    # fg_21=↓ResNet.21 #scope: Default
+      # In file /home/xzh/Code/Python/arcface_mindspore/ArcModel.py:24/        output = self.resnet(data)                       # output.shape = (batch_size,num_feature)/#[CNode]22
+    Primitive::Return{prim_type=1}(%4)    #(Undefined) #scope: Default/resnet-ResNet
+      # In file /home/xzh/Code/Python/arcface_mindspore/resnet.py:473/        if self.use_se:/#[CNode]23
+}
+# order:
+#   1: @ResNet.4:[CNode]17{[0]: ValueNode<FuncGraph> bool_.10, [1]: ValueNode<BoolImm> false}
+#   2: @ResNet.4:[CNode]24{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> ClassMember: 'Namespace:resnet..<ResNet::140029015699184>', [2]: ValueNode<Symbol> conv1_0}
+#   3: @ResNet.4:[CNode]25{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> ClassMember: 'Namespace:resnet..<ResNet::140029015699184>', [2]: ValueNode<Symbol> bn1_0}
+#   4: @ResNet.4:[CNode]26{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> ClassMember: 'Namespace:resnet..<ResNet::140029015699184>', [2]: ValueNode<Symbol> conv1_1}
+#   5: @ResNet.4:[CNode]27{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> ClassMember: 'Namespace:resnet..<ResNet::140029015699184>', [2]: ValueNode<Symbol> bn1_1}
+#   6: @ResNet.4:[CNode]28{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> ClassMember: 'Namespace:resnet..<ResNet::140029015699184>', [2]: ValueNode<Symbol> conv1_2}
+#   7: @ResNet.4:[CNode]19{[0]: ValueNode<Primitive> Switch, [1]: [CNode]17, [2]: ValueNode<FuncGraph> ✓ResNet.18, [3]: ValueNode<FuncGraph> ✗ResNet.5}
+#   8: @ResNet.4:[CNode]20{[0]: [CNode]19}
+#   9: @ResNet.4:[CNode]22{[0]: ValueNode<FuncGraph> ↓ResNet.21, [1]: [CNode]20}
+#  10: @ResNet.4:[CNode]23{[0]: ValueNode<Primitive> Return, [1]: [CNode]22}
+#  11: @ResNet.4:фself.pad{[0]: ValueNode<Primitive> resolve, [1]: ValueNode<NameSpace> ClassMember: 'Namespace:resnet..<ResNet::140029015699184>', [2]: ValueNode<Symbol> pad}
+
+
+# [No.5] ✗ResNet.5
+# In file /home/xzh/Code/Python/arcface_mindspore/resnet.py:473/        if self.use_se:/
+funcgraph fg_5[fg_4](
+) {
+
+#------------------------> 4
+    %1 = FuncGraph::fg_6(%para271)    #(Tensor(F32)[64, 6, 128, 128])    # fg_6=Conv2d.6 #scope: Default/resnet-ResNet
+      # In file /home/xzh/Code/Python/arcface_mindspore/resnet.py:482/            x = self.conv1(x)/#x
+    Primitive::Return{prim_type=1}(%1)    #(Undefined) #scope: Default/resnet-ResNet
+      # In file /home/xzh/Code/Python/arcface_mindspore/resnet.py:473/        if self.use_se:/#[CNode]29
+}
+# order:
+#   1: @✗ResNet.5:x{[0]: ValueNode<FuncGraph> Conv2d.6, [1]: x}
+#   2: @✗ResNet.5:[CNode]29{[0]: ValueNode<Primitive> Return, [1]: x}
+
+
+# [No.6] Conv2d.6
+# In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/layer/conv.py:308/    def construct(self, x):/
+funcgraph fg_6[fg_1](
+        %para272 : Tensor(F32)[64, 6, 128, 128]    # x
+    ) {
+    %1 : BoolNoShape = FuncGraph::fg_10(Bool(0))    #(BoolNoShape)    # fg_10=bool_.10 #scope: Default/resnet-ResNet/conv1-Conv2d
+      # In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/layer/conv.py:310/        if self.has_bias:/#[CNode]30
+    %2 : FuncNoShape = Primitive::Switch{prim_type=1}(%1, FuncGraph::fg_31, FuncGraph::fg_7)    #(BoolNoShape, FuncNoShape, FuncNoShape)    # fg_31=✓Conv2d.31, fg_7=✗Conv2d.7 #scope: Default/resnet-ResNet/conv1-Conv2d
+      # In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/layer/conv.py:310/        if self.has_bias:/#[CNode]32
+
+#------------------------> 5
+    %3 = %2() #scope: Default/resnet-ResNet/conv1-Conv2d
+      # In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/layer/conv.py:310/        if self.has_bias:/#[CNode]33
+    %4 = FuncGraph::fg_34(%3)    #(Undefined)    # fg_34=↓Conv2d.34 #scope: Default/resnet-ResNet
+      # In file /home/xzh/Code/Python/arcface_mindspore/resnet.py:482/            x = self.conv1(x)/#[CNode]35
+    Primitive::Return{prim_type=1}(%4)    #(Undefined) #scope: Default/resnet-ResNet/conv1-Conv2d
+      # In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/layer/conv.py:310/        if self.has_bias:/#[CNode]36
+}
+# order:
+#   1: @Conv2d.6:output{[0]: ValueNode<DoSignaturePrimitive> S-Prim-Conv2D, [1]: x, [2]: resnet.conv1.weight}
+#   2: @Conv2d.6:[CNode]30{[0]: ValueNode<FuncGraph> bool_.10, [1]: ValueNode<BoolImm> false}
+#   3: @Conv2d.6:[CNode]32{[0]: ValueNode<Primitive> Switch, [1]: [CNode]30, [2]: ValueNode<FuncGraph> ✓Conv2d.31, [3]: ValueNode<FuncGraph> ✗Conv2d.7}
+#   4: @Conv2d.6:[CNode]33{[0]: [CNode]32}
+#   5: @Conv2d.6:[CNode]35{[0]: ValueNode<FuncGraph> ↓Conv2d.34, [1]: [CNode]33}
+#   6: @Conv2d.6:[CNode]36{[0]: ValueNode<Primitive> Return, [1]: [CNode]35}
+
+
+# [No.7] ✗Conv2d.7
+# In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/layer/conv.py:310/        if self.has_bias:/
+funcgraph fg_7[fg_6](
+) {
+
+#------------------------> 6
+    %1 = $(Conv2d.6):DoSignaturePrimitive::S-Prim-Conv2D{prim_type=1}[kernel_size=(I64(7), I64(7)), stride=(I64(1), I64(1), I64(2), I64(2)), mode=I64(1), out_channel=I64(64), group=I64(1), input_names=["x", "w"], pad=(I64(0), I64(0), I64(0), I64(0)), dilation=(I64(1), I64(1), I64(1), I64(1)), pad_mode=I64(1), output_names=["output"], format="NCHW", groups=I64(1)](%para272, %para3)    #(Tensor(F32)[64, 6, 128, 128], Ref[Tensor(F32)][64, 3, 7, 7]) #scope: Default/resnet-ResNet/conv1-Conv2d
+      # In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/layer/conv.py:309/        output = self.conv2d(x, self.weight)/#output
+    Primitive::Return{prim_type=1}(%1)    #(Undefined) #scope: Default/resnet-ResNet/conv1-Conv2d
+      # In file /home/xzh/anaconda3/envs/mindspore/lib/python3.9/site-packages/mindspore/nn/layer/conv.py:310/        if self.has_bias:/#[CNode]37
+}
+# order:
+#   1: @✗Conv2d.7:[CNode]37{[0]: ValueNode<Primitive> Return, [1]: output}
 
 
 #===============================================================================
-# num of function graphs in stack: 2/3 (Ignored 1 internal frames).
+# num of function graphs in stack: 7/8 (Ignored 1 internal frames).
