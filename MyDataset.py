@@ -8,11 +8,13 @@ def get_dataset(image_folder_dataset_dir,phase,pic_size=[128,128],shuffle=True):
         composed = transforms.Compose(
             [
                 # vision.Decode(to_pil=True),
-                vision.RandomCrop(pic_size),
+                # vision.RandomCrop(pic_size),
+                vision.Resize(pic_size),
                 # vision.Grayscale(),
                 vision.RandomHorizontalFlip(),
-                vision.Normalize(mean=[0.5,0.5,0.5],std=[0.5,0.5,0.5]),
-                vision.ToTensor()
+                # vision.ToTensor(),
+                vision.Normalize(mean=[0.5*255,0.5*255,0.5*255],std=[0.5*255,0.5*255,0.5*255]),
+                vision.HWC2CHW()
             ]
         )
     elif phase == "test":
@@ -21,8 +23,8 @@ def get_dataset(image_folder_dataset_dir,phase,pic_size=[128,128],shuffle=True):
                 # vision.Decode(to_pil=True),
                 vision.CenterCrop(pic_size),
                 # vision.Grayscale(),
-                vision.Normalize(mean=[0.5,0.5,0.5],std=[0.5,0.5,0.5]),
-                vision.ToTensor()
+                vision.ToTensor(),
+                vision.Normalize(mean=[0.5,0.5,0.5],std=[0.5,0.5,0.5],is_hwc=False),
             ]
         )        
     train_dataset = train_dataset.map(composed,input_columns="image")

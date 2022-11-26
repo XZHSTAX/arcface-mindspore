@@ -20,10 +20,11 @@ pic_size=[128,128]
 composed = transforms.Compose(
     [
         # vision.Decode(to_pil=True),
-        vision.CenterCrop(pic_size),
+        # vision.CenterCrop(pic_size),
         # vision.Grayscale(),
-        vision.Normalize(mean=[0.5,0.5,0.5],std=[0.5,0.5,0.5]),
-        vision.ToTensor()
+        # vision.ToTensor(),
+        vision.Normalize(mean=[0.5*255,0.5*255,0.5*255],std=[0.5*255,0.5*255,0.5*255]),
+        vision.HWC2CHW()
     ])
 
 def get_lfw_list(pair_list):
@@ -47,13 +48,14 @@ def load_image(img_path):
     if image is None:
         return None
     # image = np.dstack((image, np.fliplr(image)))
-    image = image.transpose((2, 0, 1))
+    image = composed(image)
+    # image = image.transpose((2, 0, 1))
     image = image[np.newaxis, :, :, :]
     
-    image = np.concatenate((image, np.fliplr(image)), axis=0)
+    # image = np.concatenate((image, np.fliplr(image)), axis=0)
     image = image.astype(np.float32, copy=False)
-    image -= 127.5
-    image /= 127.5
+    # image -= 127.5
+    # image /= 127.5
     return image
 
 
@@ -78,10 +80,10 @@ def get_featurs(model, test_list, batch_size=10):
             output = model(data)
             output = output.asnumpy()
 
-            fe_1 = output[::2]
-            fe_2 = output[1::2]
-            feature = np.hstack((fe_1, fe_2))
-            # feature = output
+            # fe_1 = output[::2]
+            # fe_2 = output[1::2]
+            # feature = np.hstack((fe_1, fe_2))
+            feature = output
             # print(feature.shape)
 
             if features is None:
@@ -171,14 +173,14 @@ def lfw_test(model, val_dataset, identity_list, compair_list,batch_size=10):
     print('lfw face verification accuracy: ', acc, 'threshold: ', th)
     return acc
 
-ckpt_url = "Arcface_ckpt/Arcface_1-1_7119.ckpt"
+ckpt_url = "Arcface_ckpt/Arcface_ckpt7/Arcface-5_7119.ckpt"
 lfw_test_list = "data/lfw/lfw_test_pair.txt"
 lfw_root = "data/lfw/lfw-align-128"
 test_batch_size = 10
 
 
 if __name__ == '__main__':
-    net = Arcface(resnet50,512,13938,test=True)  
+    net = Arcface(resnet18,512,13938,test=True)  
 
     param_dict = load_checkpoint(ckpt_url)
     load_param_into_net(net, param_dict)
