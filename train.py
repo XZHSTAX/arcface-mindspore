@@ -11,27 +11,26 @@ from resnet import *
 from ArcModel import Arcface
 
 lr = 0.01
-decay_rate = 0.1
+decay_rate = 0.9
 
-total_epoch = 1
+total_epoch = 5
 m = 0.5
 s = 64
 backbone_net = resnet18
 num_feature = 512
 num_classes = 13938
-
+batch_size = 128
 
 # ckpt_url = "Arcface_ckpt5/Arcface-1_7119.ckpt"
 ckpt_url = None
-summary_dir= "./summary_dir_new/summary_01"
-directory_Arcface = "./Arcface_ckpt_new/Arcface_ckpt1"
+summary_dir= "./summary_dir_new/summary_03"
+directory_Arcface = "./Arcface_ckpt_new/Arcface_ckpt3"
 
 if __name__ == '__main__':
     image_folder_dataset_dir = "data/CASIA-maxpy-clean"
     train_dataset = get_dataset(image_folder_dataset_dir,"train")
-    train_dataset = train_dataset.batch(64)
+    train_dataset = train_dataset.batch(batch_size)
     
-    # net = Arcface(resnet50,512,13938)
     net = Arcface(backbone_net,num_feature,num_classes)
     if ckpt_url is not None:
         param_dict = load_checkpoint(ckpt_url)
@@ -52,7 +51,7 @@ if __name__ == '__main__':
     opt = nn.SGD(net.trainable_params(),learning_rate=exponential_decay_lr)
 
     # 模型保存callback
-    config_ck = ms.CheckpointConfig(save_checkpoint_steps=2000, keep_checkpoint_max=10)
+    config_ck = ms.CheckpointConfig(save_checkpoint_steps=3000, keep_checkpoint_max=10)
     ckpoint = ms.ModelCheckpoint(prefix="Arcface", directory=directory_Arcface, config=config_ck)
 
     # mindisight记录 callback

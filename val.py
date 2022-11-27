@@ -52,7 +52,7 @@ def load_image(img_path):
     # image = image.transpose((2, 0, 1))
     image = image[np.newaxis, :, :, :]
     
-    # image = np.concatenate((image, np.fliplr(image)), axis=0)
+    image = np.concatenate((image, np.fliplr(image)), axis=0)
     image = image.astype(np.float32, copy=False)
     # image -= 127.5
     # image /= 127.5
@@ -80,10 +80,10 @@ def get_featurs(model, test_list, batch_size=10):
             output = model(data)
             output = output.asnumpy()
 
-            # fe_1 = output[::2]
-            # fe_2 = output[1::2]
-            # feature = np.hstack((fe_1, fe_2))
-            feature = output
+            fe_1 = output[::2]
+            fe_2 = output[1::2]
+            feature = np.hstack((fe_1, fe_2))
+            # feature = output
             # print(feature.shape)
 
             if features is None:
@@ -173,7 +173,7 @@ def lfw_test(model, val_dataset, identity_list, compair_list,batch_size=10):
     print('lfw face verification accuracy: ', acc, 'threshold: ', th)
     return acc
 
-ckpt_url = "Arcface_ckpt_new/Arcface_ckpt1/Arcface-1_6000.ckpt"
+ckpt_url = "Arcface_ckpt_new/Arcface_ckpt3/Arcface-5_3560.ckpt"
 lfw_test_list = "data/lfw/lfw_test_pair.txt"
 lfw_root = "data/lfw/lfw-align-128"
 test_batch_size = 10

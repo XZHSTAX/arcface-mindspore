@@ -8,8 +8,8 @@ def get_dataset(image_folder_dataset_dir,phase,pic_size=[128,128],shuffle=True):
         composed = transforms.Compose(
             [
                 # vision.Decode(to_pil=True),
-                # vision.RandomCrop(pic_size),
-                vision.Resize(pic_size),
+                vision.RandomCrop(pic_size),
+                # vision.Resize(pic_size),
                 # vision.Grayscale(),
                 vision.RandomHorizontalFlip(),
                 # vision.ToTensor(),
