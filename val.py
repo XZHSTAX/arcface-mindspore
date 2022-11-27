@@ -173,7 +173,7 @@ def lfw_test(model, val_dataset, identity_list, compair_list,batch_size=10):
     print('lfw face verification accuracy: ', acc, 'threshold: ', th)
     return acc
 
-ckpt_url = "Arcface_ckpt/Arcface_ckpt7/Arcface-5_7119.ckpt"
+ckpt_url = "Arcface_ckpt_new/Arcface_ckpt1/Arcface-1_6000.ckpt"
 lfw_test_list = "data/lfw/lfw_test_pair.txt"
 lfw_root = "data/lfw/lfw-align-128"
 test_batch_size = 10

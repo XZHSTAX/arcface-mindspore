@@ -7,6 +7,7 @@ import numpy as np
 
 from resnet import *
 from MyDataset import get_dataset
+from ArcModel import Arcface
 # class Asoftmax():
 #     '''
 #     接收扩维后的数据，输出cos(\theta +m)
@@ -33,7 +34,7 @@ from MyDataset import get_dataset
 
 class Asoftmax_loss(SoftmaxCrossEntropyWithLogits):
     def __init__(self, s=64.0, m=0.5):
-        super(Asoftmax_loss,self).__init__(sparse=True)
+        super(Asoftmax_loss,self).__init__(sparse=True,reduction="mean")
         # SoftmaxCrossEntropyWithLogits.__init__(self)
         self.s = s
         self.m = m
@@ -105,9 +106,9 @@ if __name__ == '__main__':
     train_dataset = get_dataset(image_folder_dataset_dir,"train")
     train_dataset = train_dataset.batch(64)
     loss_fn = Asoftmax_loss()
-    loss_fn2 = SoftmaxCrossEntropyWithLogits(sparse=True)
-    net = resnet50(512)
-    # a = Asoftmax()
+    loss_fn2 = SoftmaxCrossEntropyWithLogits(sparse=True,reduction="mean")
+    net = Arcface(resnet18,512,13938)
+
     for d,l in train_dataset:
         output = net(d)
         L2Nor = ops.L2Normalize(axis=1)

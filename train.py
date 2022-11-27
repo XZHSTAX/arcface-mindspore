@@ -10,17 +10,21 @@ from A_softmax import Asoftmax_loss
 from resnet import *
 from ArcModel import Arcface
 
-lr = 0.0005
-decay_rate = 0.95
-decay_steps = 500
-total_epoch = 5
-m = 0.35
-s = 30
-ckpt_url = "Arcface_ckpt5/Arcface-1_7119.ckpt"
+lr = 0.01
+decay_rate = 0.1
+
+total_epoch = 1
+m = 0.5
+s = 64
+backbone_net = resnet18
+num_feature = 512
+num_classes = 13938
 
 
-summary_dir= "./summary_dir/summary_07"
-directory_Arcface = "./Arcface_ckpt/Arcface_ckpt7"
+# ckpt_url = "Arcface_ckpt5/Arcface-1_7119.ckpt"
+ckpt_url = None
+summary_dir= "./summary_dir_new/summary_01"
+directory_Arcface = "./Arcface_ckpt_new/Arcface_ckpt1"
 
 if __name__ == '__main__':
     image_folder_dataset_dir = "data/CASIA-maxpy-clean"
@@ -28,15 +32,18 @@ if __name__ == '__main__':
     train_dataset = train_dataset.batch(64)
     
     # net = Arcface(resnet50,512,13938)
-    net = Arcface(resnet18,512,13938)
-    param_dict = load_checkpoint(ckpt_url)
-    load_param_into_net(net, param_dict)
-    # loss_fn = Asoftmax_loss(s=s,m=m)
-    loss_fn = nn.SoftmaxCrossEntropyWithLogits(sparse=True) 
+    net = Arcface(backbone_net,num_feature,num_classes)
+    if ckpt_url is not None:
+        param_dict = load_checkpoint(ckpt_url)
+        load_param_into_net(net, param_dict)
+    
+    loss_fn = Asoftmax_loss(s=s,m=m)
+    # loss_fn = nn.SoftmaxCrossEntropyWithLogits(sparse=True) 
 
 
     one_epoch_step = train_dataset.get_dataset_size()
     total_step = one_epoch_step*total_epoch
+    decay_steps = one_epoch_step
 
     # 指数下降学习率（floor）
     exponential_decay_lr = nn.ExponentialDecayLR(lr, decay_rate, decay_steps,is_stair=True)
@@ -61,14 +68,11 @@ if __name__ == '__main__':
                     loss_fn=loss_fn,
                     optimizer=opt,
                     metrics={"Accuracy": nn.Accuracy()})
-    print("-"*20,"traing","-"*20)
+    print("="*20,"traing","="*20)
     model.train(total_epoch, 
                 train_dataset, 
                 callbacks=[LossMonitor(lr_list,200),ckpoint,summary_collector],
                 dataset_sink_mode=False)
-# Epoch:[  0/  1], step:[   25/ 7119], loss:[20.135/20.139], time:174.653 ms, lr:0.00050
-# Epoch:[  0/  1], step:[ 7100/ 7119], loss:[19.246/19.467], time:194.893 ms, lr:0.00011
-# Epoch time: 12128485.731 ms, per step time: 1703.678 ms, avg loss: 19.466
 
 
 #TODO: 已经把训练过程中要打印的数据模块加入，学习率自动变化加入，模型自动保存加入；下面需要定制mindinsight收集训练过程中的数据
