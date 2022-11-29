@@ -58,6 +58,26 @@
 - `Config.py`纯粹为了欺骗`resnet.py`，不过如果你使用`resnet152`或优化器Thor，记得进去把名字改了
 - `resnet.py`官方resnet复现
 
+# 自测结果
+
+使用3090对以resnet18和resnet50为backbone的模型，使用CASIA-maxpy-clean分别训练了75轮。使用参数为`s=64,m=0.5`，在lfw数据集上的测试结果如下：
+
+| backbone | resnet18 | resnet50 |
+| -------- | -------- | -------- |
+| 准确度   | 92.3%    | 87.7%    |
+
+限于实验室计算资源，没有进一步调参与训练，模型理应当有更好效果。
+
+## loss 变化图
+
+以resnet18为backbone的loss曲线图
+
+![](loss-resnet18--MindInsight.png)
+
+以resnet50为backbone的loss曲线图
+
+![](loss-resnet50--MindInsight.png)
+
 # Dataset Download
 
 [CASIA-maxpy-clean](https://aistudio.baidu.com/aistudio/datasetdetail/103163)or[CASIA-maxpy-clean](https://onedrive.live.com/?authkey=%21AJjQxHY%2DaKK%2DzPw&cid=1FD95D6F0AF30F33&id=1FD95D6F0AF30F33%2174855&parId=1FD95D6F0AF30F33%2174853&action=locate&sw=bypassConfig)
