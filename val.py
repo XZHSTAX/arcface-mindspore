@@ -19,10 +19,6 @@ from mindspore.dataset import vision,transforms
 pic_size=[128,128]
 composed = transforms.Compose(
     [
-        # vision.Decode(to_pil=True),
-        # vision.CenterCrop(pic_size),
-        # vision.Grayscale(),
-        # vision.ToTensor(),
         vision.Normalize(mean=[0.5*255,0.5*255,0.5*255],std=[0.5*255,0.5*255,0.5*255]),
         vision.HWC2CHW()
     ])
@@ -95,17 +91,6 @@ def get_featurs(model, test_list, batch_size=10):
 
     return features, cnt
 
-# def get_featurs(model,val_dataset):
-#     features = None
-#     for cnt,(data,_) in enumerate(val_dataset):
-#         output = model(data)
-#         output = output.asnumpy()
-#         if features is None:
-#             features = output
-#         else:
-#             features = np.vstack((features, output))
-#     return output,cnt
-
 
 def get_feature_dict(test_list, features):
     fe_dict = {}
@@ -159,9 +144,10 @@ def lfw_test(model, val_dataset, identity_list, compair_list,batch_size=10):
     '''
     Args:
         model : 模型
-        val_dataset: 验证集迭代对象
+        val_dataset:   图片绝对路径
         identity_list: 图片相对路径
-        compair_list: 
+        compair_list:  lfw的对比文件
+        batch_size:    一次推理图片多少
     '''
     s = time.time()
     features, cnt = get_featurs(model, val_dataset,batch_size)
@@ -188,14 +174,6 @@ if __name__ == '__main__':
     identity_list = get_lfw_list(lfw_test_list)
     img_paths = [os.path.join(lfw_root, each) for each in identity_list]
 
-    # image_folder_dataset_dir = lfw_root
-    # val_dataset = get_dataset(image_folder_dataset_dir,"test",shuffle=False)
-    # val_dataset = val_dataset.batch(64)
-    
-    # x,cnt = get_featurs(net,img_paths)
-
-
-    # model.eval()
     lfw_test(net, img_paths, identity_list, lfw_test_list,batch_size=64)
 
 

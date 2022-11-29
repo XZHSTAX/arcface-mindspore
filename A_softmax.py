@@ -33,6 +33,22 @@ from ArcModel import Arcface
 #         return cosine
 
 class Asoftmax_loss(SoftmaxCrossEntropyWithLogits):
+    '''
+    这是一个损失函数。
+
+    Arcface 的核心，A-softmax损失函数。其本质是对最后一层线性层输出处理，然后使用softmax，最后使用交叉熵损失函数来计算。
+    为了最简单的实现，这里继承SoftmaxCrossEntropyWithLogits，重载其中的construct方法，对线性层输出使用add_m_at_correctplace方法处理后，再进行loss计算。
+
+    Args:
+        s: 对应论文的s
+        m: 对应论文的m
+
+    Note:
+        继承时固定了sparse=True,reduction="mean"。所以标签不需要onehot模式，数字即可。loss将会以mean方式进行计算。
+        这里记录一下mindspore中SoftmaxCrossEntropyWithLogits与pytorch中CrossEntropy的区别：
+        
+        主要在于pytorch中reduction="mean"是默认参数，而mindspore中默认参数是None，一开始没注意这一点，导致我的学习率不能设置很大，收敛速度非常慢，训练没有效果。
+    '''
     def __init__(self, s=64.0, m=0.5):
         super(Asoftmax_loss,self).__init__(sparse=True,reduction="mean")
         # SoftmaxCrossEntropyWithLogits.__init__(self)
@@ -53,7 +69,15 @@ class Asoftmax_loss(SoftmaxCrossEntropyWithLogits):
 
 
     def add_m_at_correctplace(self,cosine,label):
+        '''
+        对应Arcface中，把线性层输出标签位置的 cos(\theta) 变为 cos(\theta+m)的操作。
+        这里大量使用了库函数，使用了反三角函数，实际上使用余弦函数的两角和差公式更好，更快：cos(a+b) = cos(a)cos(b)-sin(a)sin(b)
+        但为了简单直观，就直接使用库函数吧。
 
+        Args:
+            cosine: 线性层的输出
+            label:  数据标签，不需要onthot格式，直接数字即可
+        '''
         m_hot = self.ToOnehot(label, ops.shape(cosine)[1], self.on_value,self.off_value)
 
         cosine = ops.acos(cosine)
@@ -66,42 +90,6 @@ class Asoftmax_loss(SoftmaxCrossEntropyWithLogits):
 
 
 if __name__ == '__main__':
-    # input = Tensor(np.random.random((2,13938)),ms.float32)
-    # loss_fn = Asoftmax_loss()
-    # output = loss_fn(input,Tensor([0,1],ms.int32))
-
-    # loss_fn2 = SoftmaxCrossEntropyWithLogits(sparse=True)
-    # output2 = loss_fn2(input,Tensor([0,1],ms.int32))
-    # print(output.shape)
-    # print("output",output)
-    # print("output2",output2)
-
-    # image_folder_dataset_dir = "data/CASIA-maxpy-clean"
-    # train_dataset = get_dataset(image_folder_dataset_dir,"train")
-    # train_dataset = train_dataset.batch(64)
-
-    # net = resnet50(13938)
-    # loss_fn = Asoftmax_loss()
-    # loss_fn = SoftmaxCrossEntropyWithLogits(sparse=True)
-    # for d,l in train_dataset:
-    #     output = net(d)
-    #     loss = loss_fn(output,l)
-    #     print(loss)   
-
-    # input = Tensor(np.random.random((2,10)),ms.float32)
-    # loss_fn = SoftmaxCrossEntropyWithLogits(sparse=True)
-    # output = loss_fn(input,Tensor([0,1],ms.int32))
-
-    # a = Asoftmax()
-    # input2 = a(input,Tensor([0,1],ms.int32))
-    # output2 = loss_fn(input2,Tensor([0,1],ms.int32))
-
-    # print(output.shape)
-    # print("output",output)
-    # print("output2",output2)
-    # print("input",input)
-    # print("cos(m+the)",input2)
-
     image_folder_dataset_dir = "data/CASIA-maxpy-clean"
     train_dataset = get_dataset(image_folder_dataset_dir,"train")
     train_dataset = train_dataset.batch(64)

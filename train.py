@@ -10,84 +10,72 @@ from A_softmax import Asoftmax_loss
 from resnet import *
 from ArcModel import Arcface
 
-lr = 0.01
-decay_rate = 0.9
+lr = 0.01                                                     # 初始学习率
+decay_rate = 0.9                                              # 衰减指数底数 
 
-total_epoch = 25
+total_epoch = 25                                              # 训练轮次
 m = 0.5
 s = 64
-backbone_net = resnet18
-num_feature = 512
-num_classes = 13938
-batch_size = 128
+backbone_net = resnet18                                       # backbone
+num_feature = 512                                             # backbone 输出大小
+num_classes = 13938                                           # 线性层输出大小
+batch_size = 128                                              # 训练包大小
 
 # ckpt_url = "Arcface_ckpt5/Arcface-1_7119.ckpt"
-ckpt_url = None
-summary_dir= "./summary_dir_new/summary_03"
-directory_Arcface = "./Arcface_ckpt_new/Arcface_ckpt3"
+ckpt_url = None                                               # 预训练模型路径
+summary_dir= "./summary_dir/summary_01"                       # summary写入路径
+directory_Arcface = "./Arcface_ckpt/Arcface_ckpt1"            # ckpt保存路径
+collect_summary_freq = 50                                     # summary收集频率（step/次）
+save_ckpt_steps = 3560                                        # ckpt保存频率 （step/次）
+keep_ckpt_max   = 10                                          # ckpt文件最大保存个数
+print_loss_step = 1000                                        # 打印loss值频次 (step/次)
+image_folder_dataset_dir = "data/CASIA-maxpy-clean"
 
-backbone_net_list = [resnet18,resnet50]
-sm_list = [[64,0.5],[30,0.5]]
 if __name__ == '__main__':
-    image_folder_dataset_dir = "data/CASIA-maxpy-clean"
+    
     train_dataset = get_dataset(image_folder_dataset_dir,"train")
     train_dataset = train_dataset.batch(batch_size)
     
-    for i in backbone_net_list:
-        for j in sm_list:
-            backbone_net = i
-            s = j[0]
-            m = j[1]
-            summary_dir = "./summary_dir_new/summary-"+str(backbone_net.__name__)+"-"+str(s)
-            directory_Arcface = "./Arcface_ckpt_new/Arcface_ckpt-"+str(backbone_net.__name__)+"-"+str(s)
+    net = Arcface(backbone_net,num_feature,num_classes)
+    if ckpt_url is not None:
+        param_dict = load_checkpoint(ckpt_url)
+        load_param_into_net(net, param_dict)
+    
+    loss_fn = Asoftmax_loss(s=s,m=m)
+    # loss_fn = nn.SoftmaxCrossEntropyWithLogits(sparse=True) 
+
+
+    one_epoch_step = train_dataset.get_dataset_size()
+    total_step = one_epoch_step*total_epoch
+    decay_steps = one_epoch_step
+
+    # 指数下降学习率（floor）
+    exponential_decay_lr = nn.ExponentialDecayLR(lr, decay_rate, decay_steps,is_stair=True)
+    lr_list = nn.exponential_decay_lr(lr,decay_rate,total_step,decay_steps,1,True)
+        
+    opt = nn.SGD(net.trainable_params(),learning_rate=exponential_decay_lr)
+
+    # 模型保存callback
+    config_ck = ms.CheckpointConfig(save_checkpoint_steps=save_ckpt_steps, keep_checkpoint_max=keep_ckpt_max)
+    ckpoint = ms.ModelCheckpoint(prefix="Arcface", directory=directory_Arcface, config=config_ck)
+
+    # mindisight记录 callback
+    specified = {"collect_metric": True,"collect_graph": True,"collect_dataset_graph": True}
+
+    summary_collector = ms.SummaryCollector(summary_dir=summary_dir, collect_specified_data=specified,
+                                            collect_freq=collect_summary_freq, keep_default_action=False)
+
+
+
+    model = ms.Model(network=net,
+                    loss_fn=loss_fn,
+                    optimizer=opt,
+                    metrics={"Accuracy": nn.Accuracy()})
+    
+    print("="*20,"traing","="*20)
+    
+    model.train(total_epoch, 
+                train_dataset, 
+                callbacks=[LossMonitor(lr_list,print_loss_step),ckpoint,summary_collector],
+                dataset_sink_mode=False)
             
-            net = Arcface(backbone_net,num_feature,num_classes)
-            if ckpt_url is not None:
-                param_dict = load_checkpoint(ckpt_url)
-                load_param_into_net(net, param_dict)
-            
-            loss_fn = Asoftmax_loss(s=s,m=m)
-            # loss_fn = nn.SoftmaxCrossEntropyWithLogits(sparse=True) 
-
-
-            one_epoch_step = train_dataset.get_dataset_size()
-            total_step = one_epoch_step*total_epoch
-            decay_steps = one_epoch_step
-
-            # 指数下降学习率（floor）
-            exponential_decay_lr = nn.ExponentialDecayLR(lr, decay_rate, decay_steps,is_stair=True)
-            lr_list = nn.exponential_decay_lr(lr,decay_rate,total_step,decay_steps,1,True)
-                
-            opt = nn.SGD(net.trainable_params(),learning_rate=exponential_decay_lr)
-
-            # 模型保存callback
-            config_ck = ms.CheckpointConfig(save_checkpoint_steps=3000, keep_checkpoint_max=10)
-            ckpoint = ms.ModelCheckpoint(prefix="Arcface", directory=directory_Arcface, config=config_ck)
-
-            # mindisight记录 callback
-            specified = {"collect_metric": True,"collect_graph": True,
-                            "collect_dataset_graph": True}
-
-            summary_collector = ms.SummaryCollector(summary_dir=summary_dir, collect_specified_data=specified,
-                                                    collect_freq=50, keep_default_action=False)
-
-
-
-            model = ms.Model(network=net,
-                            loss_fn=loss_fn,
-                            optimizer=opt,
-                            metrics={"Accuracy": nn.Accuracy()})
-            print("="*20,"traing","="*20)
-            model.train(total_epoch, 
-                        train_dataset, 
-                        callbacks=[LossMonitor(lr_list,200),ckpoint,summary_collector],
-                        dataset_sink_mode=False)
-            
-
-
-#TODO: 已经把训练过程中要打印的数据模块加入，学习率自动变化加入，模型自动保存加入；下面需要定制mindinsight收集训练过程中的数据
-
-# summary4 data处理修改为先totensor再Normalize
-# summary5 data处理修改为先resize，再Normalize，最后HWC2CHW，删去了totensor
-# summary6 在6基础上，把网络改成了resnet18，修改损失函数为SoftmaxCrossEntropyWithLogits
-# summary7 继续6 directory_Arcface = "./Arcface_ckpt/Arcface_ckpt7"

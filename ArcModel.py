@@ -6,6 +6,16 @@ from mindspore.common.initializer import initializer
 
 
 class Arcface(nn.Cell):
+    '''
+    构建Arcface模型，arcface的模型实际上就是backbone+线性层的结构。
+    需要注意的是，线性层的输出为分类数。backbone的输出需要归一化，线性层的权重也需要归一化。否则后面的Asoftmax会出现loss值为nan问题（因为arccos没有对应值）。
+
+    Args:
+        backbone_net: backbone,需要是nn.cell类型的，并且能接收参数num_feature作为backbone输出的大小。
+        num_feature:  backbone输出大小
+        num_classes:  Arcface的线性层需要输出的大小。
+        test:         是否测试，如果为True，则直接输出backbone的输出。False则输出线性层输出
+    '''
     def __init__(self,backbone_net,num_feature,num_classes,test=False):
         super(Arcface,self).__init__()
         self.num_feature = num_feature
